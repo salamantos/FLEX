@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-#  frontend:
-#    container_name: frontend
-#    build: ./frontend
-#    restart: on-failure
-#    ports:
-#      - 8080:8080
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    restart: on-failure
+    ports:
+      - 8080:8080
 
   server:
     container_name: server

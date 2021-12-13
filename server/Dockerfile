@@ -1,5 +1,4 @@
 FROM python:3.8-slim
-RUN apt-get update && apt-get install -y gcc build-essential curl cron
 
 # Set working directory
 WORKDIR /usr/app
@@ -9,7 +8,7 @@ COPY server/requirements.txt ./requirements.txt
 RUN pip install -r ./requirements.txt
 
 # add app
-COPY server/ server/
+COPY server server
 
 USER nobody
 
