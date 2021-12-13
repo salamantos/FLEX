@@ -13,4 +13,4 @@ logger = logging.getLogger(__name__)
 @router.post('/data/')
 @catch_exceptions
 async def create_data(body: models.Data) -> str:
-    return await mongo.do_insert(body)
+    return await mongo.insert_data(body)

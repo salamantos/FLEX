@@ -16,7 +16,7 @@ def get_collection():
     return db.light
 
 
-async def do_insert(document: models.Data):
+async def insert_data(document: models.Data):
     result = await get_collection().insert_one(dataclasses.asdict(document))
     return str(result.inserted_id)
 
