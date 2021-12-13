@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <header></header>
 
 <body>
 <h2>Hello</h2>
 </body>
+
+<script>
+
+    function request(theUrl, callback) {
+        let xmlHttp = new XMLHttpRequest()
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true)
+        xmlHttp.send(null)
+    }
+
+    request('http://localhost:8001/api/data/star1', text => console.log(text))
+
+</script>
 
 </html>
