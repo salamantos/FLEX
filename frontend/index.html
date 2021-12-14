@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<header>
-    <style>
-        .name{
-            padding: 2px;
-            margin: 3px;
-            cursor: pointer;
-        }
-    </style>
-</header>
+<head>
+    <title>FLEX</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
 
 <body>
-<h2>FLEX</h2>
-<h3>All names:</h3>
-<div id="all_names"></div>
+<div class="container">
+    <div class="left_side">
+        <h1 class="logo_header">FLEX</h1>
+        <div class="info">
+            <div class="arrow"></div>
+            <span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </span>
+        </div>
+        <div id="all_names"></div>
+    </div>
+    <div class="right_side">
+        <h2 id="name_header">NGC+0</h2>
+        <div class="plot"></div>
+    </div>
+</div>
 </body>
 
 <script>
-
+    
     const HOST = 'http://localhost:8001/api'
-
+    
     function request(url, callback) {
         let xhr = new XMLHttpRequest()
         xhr.onload = function () {
@@ -34,19 +47,25 @@
         xhr.responseType = 'json'
         xhr.send(null)
     }
-
+    
     function show_all_names(names) {
         document.getElementById('all_names').innerHTML = names.map(
-            name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`
+          name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`,
         ).reduce(
-            (a, b) => a + b, ''
+          (a, b) => a + b, '',
         )
     }
-
+    
     function onNameClick(name) {
+        document.getElementById('name_header').textContent = name
         request(`${HOST}/data/${name}`, data => console.log(data))
     }
-
+    
+    let names = []
+    for (let i = 0; i < 150; i++) {
+        names.push(`NGC+${i * 199}`)
+    }
+    show_all_names(names)
     request(`${HOST}/names`, names => show_all_names(names))
 
 </script>
