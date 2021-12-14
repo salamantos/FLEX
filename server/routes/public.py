@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, HTTPException
 
 from server import models
@@ -16,3 +18,9 @@ async def get_data(star_name: str) -> models.Data:
         raise HTTPException(detail='Star data not found', status_code=404)
 
     return data
+
+
+@router.get('/names/')
+@catch_exceptions
+async def get_all_names() -> List[str]:
+    return await mongo.get_all_names()
