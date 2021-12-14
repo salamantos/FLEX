@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<header></header>
+<header>
+    <style>
+        .name{
+            padding: 2px;
+            margin: 3px;
+            cursor: pointer;
+        }
+    </style>
+</header>
 
 <body>
-<h2>Hello</h2>
+<h2>FLEX</h2>
+<h3>All names:</h3>
+<div id="all_names"></div>
 </body>
 
 <script>
 
-    function request(theUrl, callback) {
-        let xmlHttp = new XMLHttpRequest()
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                callback(xmlHttp.responseText);
+    const HOST = 'http://localhost:8001/api'
+
+    function request(url, callback) {
+        let xhr = new XMLHttpRequest()
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                callback(xhr.response)
+            } else {
+                console.error(`Error ${xhr.status}: ${xhr.statusText}`)
+            }
         }
-        xmlHttp.open("GET", theUrl, true)
-        xmlHttp.send(null)
+        xhr.open('GET', url, true)
+        xhr.responseType = 'json'
+        xhr.send(null)
     }
 
-    request('http://localhost:8001/api/data/star1', text => console.log(text))
+    function show_all_names(names) {
+        document.getElementById('all_names').innerHTML = names.map(
+            name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`
+        ).reduce(
+            (a, b) => a + b, ''
+        )
+    }
+
+    function onNameClick(name) {
+        request(`${HOST}/data/${name}`, data => console.log(data))
+    }
+
+    request(`${HOST}/names`, names => show_all_names(names))
 
 </script>
 
