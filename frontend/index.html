@@ -20,7 +20,11 @@
             <span>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </span>
+            <br/>
+            <br/>
+            <span><b>Choose name from the list below &#8595;</b></span>
         </div>
+        <input type="text" id="name_input" placeholder="Search.." oninput="onSearch()">
         <div id="all_names"></div>
     </div>
     <div class="right_side">
@@ -59,6 +63,16 @@
     function onNameClick(name) {
         document.getElementById('name_header').textContent = name
         request(`${HOST}/data/${name}`, data => console.log(data))
+    }
+    
+    function onSearch(name) {
+        const filtered_names = names.filter(name1 => name1.toLowerCase().includes(name.toLowerCase()))
+        show_all_names(filtered_names)
+    }
+    
+    let name_input = document.getElementById('name_input')
+    name_input.oninput = function() {
+        onSearch(name_input.value)
     }
     
     let names = []

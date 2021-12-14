@@ -18,9 +18,8 @@ body {
     width: 25%;
     height: 100%;
 
-    box-shadow: 1px 0 5px #9d9d9d;
+    box-shadow: 1px 0 5px #9D9D9D;
     z-index: 2;
-
 
     display: flex;
     flex-flow: column;
@@ -43,7 +42,7 @@ body {
     font-size: 40px;
     font-weight: 300;
     margin: 10px 0;
-    text-shadow: 0 0 10px #cecece;
+    text-shadow: 0 0 10px #CECECE;
 
     flex-grow: 0;
     flex-shrink: 1;
@@ -64,6 +63,7 @@ body {
     margin: 20px 0 0;
     padding: 0 10px 10px;
     font-size: 20px;
+    font-weight: 300;
 
     flex-grow: 0;
     flex-shrink: 1;
@@ -83,10 +83,11 @@ body {
 }
 
 #all_names {
+    padding: 20px;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 20px;
 
     flex-grow: 1;
     flex-shrink: 1;
@@ -100,4 +101,23 @@ body {
     cursor: pointer;
     font-weight: 200;
     font-size: 20px;
+}
+
+#name_input {
+    padding: 10px 10px 10px 40px;
+    margin: 20px 20px 0 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    outline: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 8px;
+    background-repeat: no-repeat;
+}
+
+#name_input:focus {
+    /*border: 2px solid #464646;*/
 }
