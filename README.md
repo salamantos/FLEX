@@ -1,5 +1,6 @@
 # FLEX
 ### Light curve visualization site
-FLEX - **F**ulu **L**ibrary **EX**amples - is a site visualizing observations of ~300 black holes and stars
+FLEX - **F**ulu **L**ibrary **EX**amples - is a website visualizing light curves of astronomical transients (SN, TDE etc.) and Active Galactic Nucleas (AGN)
 
-It uses approximation algorithm from Fulu library: https://github.com/HSE-LAMBDA/fulu
+It uses approximation neural network models from Fulu library: https://github.com/HSE-LAMBDA/fulu
+Light curves from Zwicky Transient Facility [(ZTF)](https://www.ztf.caltech.edu/)
