@@ -17,7 +17,7 @@ services:
     environment:
       MONGO_URI: mongodb://salamantos:RucKwFpYFAQmrO4mWwth@flex_mongo:27017
     depends_on:
-      - mongo
+      - flex_mongo
     ports:
       - 7001:8001
 
@@ -32,7 +32,7 @@ services:
     image: mongo-express
     restart: always
     depends_on:
-      - mongo
+      - flex_mongo
     ports:
       - 7081:8081
     environment:
