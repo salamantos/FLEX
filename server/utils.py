@@ -9,7 +9,7 @@ def catch_exceptions(func: Callable):
     Catches all exceptions raised in function
 
     Rise http exceptions like that:
-    raise http_exceptions.NotFound('sadly')
+    raise HTTPException(detail='Not found!', status_code=404)
 
     If excepted not http exception, return status is 500
     """
