@@ -2,18 +2,18 @@ version: '3'
 
 services:
   flex_frontend:
-    container_name: frontend
+    container_name: flex_frontend
     build: ./frontend
-    restart: on-failure
+    restart: always
     ports:
       - 7080:8080
 
   flex_server:
-    container_name: server
+    container_name: flex_server
     build:
       context: .
       dockerfile: server/Dockerfile
-    restart: on-failure
+    restart: always
     environment:
       MONGO_URI: mongodb://salamantos:RucKwFpYFAQmrO4mWwth@flex_mongo:27017
     depends_on:
@@ -22,6 +22,7 @@ services:
       - 7001:8001
 
   flex_mongo:
+    container_name: flex_mongo
     image: mongo
     restart: always
     environment:
@@ -29,6 +30,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: RucKwFpYFAQmrO4mWwth
 
   flex_mongo-express:
+    container_name: flex_mongo_express
     image: mongo-express
     restart: always
     depends_on:
