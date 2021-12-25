@@ -62,7 +62,7 @@ body {
     width: calc(100% - 20px);
     margin: 20px 0 0;
     padding: 0 10px 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
 
     flex-grow: 0;

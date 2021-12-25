@@ -20,7 +20,9 @@
         <div class="info">
             <div class="arrow"></div>
             <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Use visualization of the FULU library work by neural light curves network approximation.
+                <br/>
+                We presented approximation using the Normalizing Flows algorithm for data with a total number of points in two passbands from 10 to 15.
             </span>
             <br/>
             <br/>
@@ -40,6 +42,8 @@
 
     const HOST = 'https://flex.salamantos.me/api'
     // const HOST = 'http://localhost:7001/api'
+
+    let NAMES = []
 
     function request(url, callback) {
         let xhr = new XMLHttpRequest()
@@ -61,6 +65,11 @@
         ).reduce(
             (a, b) => a + b, '',
         )
+    }
+
+    function save_response_names(names) {
+        NAMES = names
+        show_all_names(names)
     }
 
     function plot(data) {
@@ -147,8 +156,8 @@
         request(`${HOST}/data/${name}`, data => plot(data))
     }
 
-    function onSearch(name) {
-        const filtered_names = names.filter(name1 => name1.toLowerCase().includes(name.toLowerCase()))
+    function onSearch(pattern) {
+        const filtered_names = NAMES.filter(name => name.toLowerCase().includes(pattern.toLowerCase()))
         show_all_names(filtered_names)
     }
 
@@ -157,7 +166,7 @@
         onSearch(name_input.value)
     }
 
-    request(`${HOST}/names`, names => show_all_names(names))
+    request(`${HOST}/names`, names => save_response_names(names))
 
 </script>
 
