@@ -30,7 +30,7 @@ body {
     height: 100vh;
 }
 
-.plot {
+#plot {
     width: 80%;
     height: 50%;
     background-color: #E7E7E7;

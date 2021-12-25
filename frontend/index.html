@@ -3,12 +3,14 @@
 
 <head>
     <title>FLEX</title>
-    
+
     <link rel="stylesheet" href="styles.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
 </head>
 
 <body>
@@ -28,16 +30,17 @@
         <div id="all_names"></div>
     </div>
     <div class="right_side">
-        <h2 id="name_header">NGC+0</h2>
-        <div class="plot"></div>
+        <h2 id="name_header">Name</h2>
+        <div id="plot"></div>
     </div>
 </div>
 </body>
 
 <script>
-    
-    const HOST = 'https://flex.salamantos.me/api'
-    
+
+    // const HOST = 'https://flex.salamantos.me/api'
+    const HOST = 'http://localhost:7001/api'
+
     function request(url, callback) {
         let xhr = new XMLHttpRequest()
         xhr.onload = function () {
@@ -51,35 +54,109 @@
         xhr.responseType = 'json'
         xhr.send(null)
     }
-    
+
     function show_all_names(names) {
         document.getElementById('all_names').innerHTML = names.map(
-          name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`,
+            name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`,
         ).reduce(
-          (a, b) => a + b, '',
+            (a, b) => a + b, '',
         )
     }
-    
+
+    function plot(data) {
+        const time_min = Math.min(...data['time'])
+        const time_max = Math.max(...data['time'])
+
+
+        const green_with_error = {
+            x: data.time_with_error,
+            y: data.flux_0_with_error,
+
+            type: 'scatter',
+            fill: "tozerox",
+            fillcolor: "rgba( 39, 174, 96 ,0.2)",
+            line: {color: "transparent"},
+            name: "Green",
+        }
+
+        const red_with_error = {
+            x: data.time_with_error,
+            y: data.flux_1_with_error,
+
+            type: 'scatter',
+            fill: "tozerox",
+            fillcolor: "rgba( 236, 112, 99 ,0.2)",
+            line: {color: "transparent"},
+            name: "Red",
+        }
+        const green = {
+            x: data.time,
+            y: data.flux_0,
+
+            type: 'scatter',
+            line: {color: "rgba( 39, 174, 96 ,1)"},
+            name: "Green",
+        }
+
+        const red = {
+            x: DATA.time,
+            y: DATA.flux_1,
+
+            type: 'scatter',
+            line: {color: "rgba( 236, 112, 99 ,1)"},
+            name: "Red",
+        }
+
+
+        const plot_data = [green, red, green_with_error, red_with_error]
+
+
+        const layout = {
+
+            title: 'Scroll and Zoom',
+
+            showlegend: false,
+            paper_bgcolor: "rgb(255,255,255)",
+            plot_bgcolor: "rgb(229,229,229)",
+            xaxis: {
+                gridcolor: "rgb(255,255,255)",
+                range: [time_min, time_max],
+                showgrid: true,
+                showline: false,
+                showticklabels: true,
+                tickcolor: "rgb(127,127,127)",
+                ticks: "outside",
+                zeroline: false
+            },
+            yaxis: {
+                gridcolor: "rgb(255,255,255)",
+                showgrid: true,
+                showline: false,
+                showticklabels: true,
+                tickcolor: "rgb(127,127,127)",
+                ticks: "outside",
+                zeroline: false
+            }
+
+        }
+        Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
+    }
+
     function onNameClick(name) {
         document.getElementById('name_header').textContent = name
-        request(`${HOST}/data/${name}`, data => console.log(data))
+        request(`${HOST}/data/${name}`, data => plot(data))
     }
-    
+
     function onSearch(name) {
         const filtered_names = names.filter(name1 => name1.toLowerCase().includes(name.toLowerCase()))
         show_all_names(filtered_names)
     }
-    
+
     let name_input = document.getElementById('name_input')
     name_input.oninput = function () {
         onSearch(name_input.value)
     }
-    
-    // let names = []
-    // for (let i = 0; i < 150; i++) {
-    //     names.push(`NGC+${i * 199}`)
-    // }
-    // show_all_names(names)
+
     request(`${HOST}/names`, names => show_all_names(names))
 
 </script>

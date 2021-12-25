@@ -5,5 +5,9 @@ from typing import List
 @dataclasses.dataclass
 class Data:
     name: str
-    x: List[float]
-    y: List[float]
+    time_with_error: List[float]
+    time: List[float]
+    flux_0_with_error: List[float]
+    flux_1_with_error: List[float]
+    flux_0: List[float]
+    flux_1: List[float]
