@@ -1,4 +1,5 @@
 import logging
+from typing import List
 
 from server import models
 from server import mongo
@@ -12,5 +13,5 @@ logger = logging.getLogger(__name__)
 
 @router.post('/data/')
 @catch_exceptions
-async def create_data(body: models.Data) -> str:
-    return await mongo.insert_data(body)
+async def create_data(body: List[models.Data]) -> List[str]:
+    return [await mongo.insert_data(data) for data in body]
