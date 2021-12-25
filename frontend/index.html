@@ -38,8 +38,8 @@
 
 <script>
 
-    // const HOST = 'https://flex.salamantos.me/api'
-    const HOST = 'http://localhost:7001/api'
+    const HOST = 'https://flex.salamantos.me/api'
+    // const HOST = 'http://localhost:7001/api'
 
     function request(url, callback) {
         let xhr = new XMLHttpRequest()
@@ -99,8 +99,8 @@
         }
 
         const red = {
-            x: DATA.time,
-            y: DATA.flux_1,
+            x: data.time,
+            y: data.flux_1,
 
             type: 'scatter',
             line: {color: "rgba( 236, 112, 99 ,1)"},
