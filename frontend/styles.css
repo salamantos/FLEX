@@ -49,6 +49,20 @@ body {
     flex-basis: auto;
 }
 
+.logo_a {
+    color: white;
+    text-decoration: none;
+}
+
+.dot {
+    height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 20px 0 20px;
+}
+
 #name_header {
     text-align: center;
     font-size: 30px;

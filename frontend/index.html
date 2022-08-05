@@ -16,16 +16,11 @@
 <body>
 <div class="container">
     <div class="left_side">
-        <h1 class="logo_header">FLEX</h1>
+	<h1 class="logo_header">
+		FULU
+	</h1>
         <div class="info">
             <div class="arrow"></div>
-            <span>
-                Use visualization of the FULU library work by neural light curves network approximation.
-                <br/>
-                We presented approximation using the Normalizing Flows algorithm for data with a total number of points in two passbands from 10 to 15.
-            </span>
-            <br/>
-            <br/>
             <span><b>Choose name from the list below &#8595;</b></span>
         </div>
         <input type="text" id="name_input" placeholder="Search.." oninput="onSearch()">
@@ -40,7 +35,7 @@
 
 <script>
 
-    const HOST = 'https://flex.salamantos.me/api'
+    const HOST = 'http://51.250.7.194:7001/api'
     // const HOST = 'http://localhost:7001/api'
 
     let NAMES = []
@@ -85,7 +80,7 @@
             fill: "tozerox",
             fillcolor: "rgba( 39, 174, 96 ,0.2)",
             line: {color: "transparent"},
-            name: "Green",
+            name: "g passband error",
         }
 
         const red_with_error = {
@@ -96,7 +91,7 @@
             fill: "tozerox",
             fillcolor: "rgba( 236, 112, 99 ,0.2)",
             line: {color: "transparent"},
-            name: "Red",
+            name: "r passband error",
         }
         const green = {
             x: data.time,
@@ -104,7 +99,7 @@
 
             type: 'scatter',
             line: {color: "rgba( 39, 174, 96 ,1)"},
-            name: "Green",
+            name: "g passband flux",
         }
 
         const red = {
@@ -113,7 +108,7 @@
 
             type: 'scatter',
             line: {color: "rgba( 236, 112, 99 ,1)"},
-            name: "Red",
+            name: "r passband flux",
         }
 
 
@@ -124,7 +119,7 @@
 
             title: 'Scroll and Zoom',
 
-            showlegend: false,
+            showlegend: true,
             paper_bgcolor: "rgb(255,255,255)",
             plot_bgcolor: "rgb(229,229,229)",
             xaxis: {
@@ -135,7 +130,9 @@
                 showticklabels: true,
                 tickcolor: "rgb(127,127,127)",
                 ticks: "outside",
-                zeroline: false
+                zeroline: false,
+                title: {text: "MJD"},
+		// tickformat: "%"
             },
             yaxis: {
                 gridcolor: "rgb(255,255,255)",
@@ -144,8 +141,9 @@
                 showticklabels: true,
                 tickcolor: "rgb(127,127,127)",
                 ticks: "outside",
-                zeroline: false
-            }
+                zeroline: false,
+		title: {text: "Flux [mJu]"}
+            },
 
         }
         Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
