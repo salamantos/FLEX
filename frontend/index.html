@@ -8,7 +8,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500&display=swap"
+          rel="stylesheet">
 
     <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
 </head>
@@ -16,14 +17,15 @@
 <body>
 <div class="container">
     <div class="left_side">
-	<h1 class="logo_header">
-		FULU
-	</h1>
+        <h1 class="logo_header">
+            FULU
+        </h1>
         <div class="info">
             <div class="arrow"></div>
             <span><b>Choose name from the list below &#8595;</b></span>
         </div>
-        <input type="text" id="name_input" placeholder="Search.." oninput="onSearch()">
+        <input type="text" id="name_input" placeholder="Search.."
+               oninput="onSearch()">
         <div id="all_names"></div>
     </div>
     <div class="right_side">
@@ -35,8 +37,8 @@
 
 <script>
 
-    const HOST = 'http://51.250.7.194:7001/api'
-    // const HOST = 'http://localhost:7001/api'
+    const HOST = '/api'
+    // const HOST = 'http://51.250.7.194:7001/api'
 
     let NAMES = []
 
@@ -67,14 +69,24 @@
         show_all_names(names)
     }
 
+    function _plot_dots(data) {
+
+    }
+
+    function _plot_aug(data) {
+
+    }
+
     function plot(data) {
         const time_min = Math.min(...data['time'])
         const time_max = Math.max(...data['time'])
+        const time_min_aug = Math.min(...data['time_aug'])
+        const time_max_aug = Math.max(...data['time_aug'])
 
 
-        const green_with_error = {
-            x: data.time_with_error,
-            y: data.flux_0_with_error,
+        const green_error_aug = {
+            x: data.time_error_aug,
+            y: data.flux_0_error_aug,
 
             type: 'scatter',
             fill: "tozerox",
@@ -83,9 +95,9 @@
             name: "g passband error",
         }
 
-        const red_with_error = {
-            x: data.time_with_error,
-            y: data.flux_1_with_error,
+        const red_error_aug = {
+            x: data.time_error_aug,
+            y: data.flux_1_error_aug,
 
             type: 'scatter',
             fill: "tozerox",
@@ -93,26 +105,60 @@
             line: {color: "transparent"},
             name: "r passband error",
         }
-        const green = {
-            x: data.time,
-            y: data.flux_0,
+        const green_aug = {
+            x: data.time_aug,
+            y: data.flux_0_aug,
 
             type: 'scatter',
             line: {color: "rgba( 39, 174, 96 ,1)"},
             name: "g passband flux",
         }
 
-        const red = {
-            x: data.time,
-            y: data.flux_1,
+        const red_aug = {
+            x: data.time_aug,
+            y: data.flux_1_aug,
 
             type: 'scatter',
             line: {color: "rgba( 236, 112, 99 ,1)"},
             name: "r passband flux",
         }
 
+        const green_dots = {
+            x: data.time,
+            y: data.flux_0,
+            error_y: {
+                type: 'data',
+                array: data.flux_0_error,
+                visible: true
+            },
+            type: 'scatter',
+            mode: 'markers',
+            marker: {
+                color: "rgba( 39, 174, 96 ,0.5)",
+                size: 8
+            },
+            name: "g observed",
+        }
 
-        const plot_data = [green, red, green_with_error, red_with_error]
+        const red_dots = {
+            x: data.time,
+            y: data.flux_1,
+            error_y: {
+                type: 'data',
+                array: data.flux_1_error,
+                visible: true
+            },
+            type: 'scatter',
+            mode: 'markers',
+            marker: {
+                color: "rgba( 236, 112, 99 ,0.5)",
+                size: 8
+            },
+            name: "r observed",
+        }
+
+
+        const plot_data = [green_aug, red_aug, green_error_aug, red_error_aug, green_dots, red_dots]
 
 
         const layout = {
@@ -132,7 +178,6 @@
                 ticks: "outside",
                 zeroline: false,
                 title: {text: "MJD"},
-		// tickformat: "%"
             },
             yaxis: {
                 gridcolor: "rgb(255,255,255)",
@@ -142,7 +187,7 @@
                 tickcolor: "rgb(127,127,127)",
                 ticks: "outside",
                 zeroline: false,
-		title: {text: "Flux [mJu]"}
+                title: {text: "Flux [mJu]"}
             },
 
         }
@@ -164,8 +209,10 @@
         onSearch(name_input.value)
     }
 
+    // request(`${HOST}/data/ZTF21abwxaht_GP`, data => plot(data))
     request(`${HOST}/names`, names => save_response_names(names))
 
 </script>
 
 </html>
+
