@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Light Curves Viewer - FULU</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500&display=swap"
+          rel="stylesheet">
+
+    <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="left_side">
+        <div class="menu">
+            <a class="logo_header" href="fulu.html">
+                FULU
+            </a><a class="logo_header logo_header_active" href="valc.html">
+            VALC
+        </a>
+        </div>
+        <div class="info">
+            <div class="arrow arrow_right"></div>
+            <span><b>Choose name from the list below &#8595;</b></span>
+        </div>
+        <input type="text" id="name_input" placeholder="Search.."
+               oninput="onSearch()">
+        <div id="all_names"></div>
+    </div>
+    <div class="right_side">
+        <div id="data">
+            <h2 id="name_header"></h2>
+            <div id="params"></div>
+            <div id="images"></div>
+        </div>
+
+        <div id="description">
+            <h2>VALC</h2>
+            bla bla
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    // const HOST = '/api'
+    const HOST = 'http://84.201.157.77:7001/api'
+
+    let NAMES = []
+
+    function request(url, callback) {
+        let xhr = new XMLHttpRequest()
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                callback(xhr.response)
+            } else {
+                console.error(`Error ${xhr.status}: ${xhr.statusText}`)
+            }
+        }
+        xhr.open('GET', url, true)
+        xhr.responseType = 'json'
+        xhr.send(null)
+    }
+
+    function show_all_names(names) {
+        document.getElementById('all_names').innerHTML = names.map(
+            name => `<span class="name" onclick="onNameClick('${name}')">${name}</span>`,
+        ).reduce(
+            (a, b) => a + b, '',
+        )
+    }
+
+    function save_response_names(names) {
+        NAMES = names
+        show_all_names(names)
+    }
+
+    function plot(data) {
+    }
+
+    function show_params(data) {
+        let innerHTML = ''
+        for (const [param, value] of Object.entries(data.params)) {
+            let col_value = value
+            if (param === 'Statistics') {
+                col_value = Object.values(value).map(stat => `<li>${stat}</li>`).reduce(
+                    (a, b) => a + b, '',
+                )
+                col_value = `<ol class="params_list">${col_value}</ol>`
+            }
+            innerHTML += `<div class="div-table-row">
+                <div class="div-table-col">${param}</div>
+                <div class="div-table-col">${col_value}</div>
+            </div>`
+        }
+        document.getElementById('params').innerHTML = innerHTML
+    }
+
+    function show_images(data) {
+        let innerHTML = ''
+        for (const image_url of data.images) {
+            innerHTML += `<img src="${image_url}" alt=""/>`
+        }
+        document.getElementById('images').innerHTML = innerHTML
+    }
+
+    function onNameClick(name) {
+        document.getElementById('name_header').textContent = name
+        request(`${HOST}/data/VALC/${name}`, data => {
+            plot(data)
+            show_params(data)
+            show_images(data)
+        })
+        document.getElementById('description').style.display = 'none'
+        document.getElementById('data').style.display = 'block'
+    }
+
+    function onSearch(pattern) {
+        const filtered_names = NAMES.filter(name => name.toLowerCase().includes(pattern.toLowerCase()))
+        show_all_names(filtered_names)
+    }
+
+    let name_input = document.getElementById('name_input')
+    name_input.oninput = function () {
+        onSearch(name_input.value)
+    }
+
+    request(`${HOST}/names-valc`, names => save_response_names(names))
+
+</script>
+
+</html>
+
