@@ -15,3 +15,9 @@ logger = logging.getLogger(__name__)
 @catch_exceptions
 async def create_data(body: List[models.Data]) -> List[str]:
     return [await mongo.insert_data(data) for data in body]
+
+
+@router.post('/data-valc/')
+@catch_exceptions
+async def create_data_valc(body: List[models.DataVALC]) -> List[str]:
+    return [await mongo.insert_data(data) for data in body]

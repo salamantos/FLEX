@@ -19,3 +19,14 @@ class Data:
     flux_1_error_aug: List[float]
     flux_0_aug: List[float]
     flux_1_aug: List[float]
+
+    type: str = 'FULU'
+
+
+@dataclasses.dataclass
+class DataVALC:
+    name: str
+
+    params: dict
+
+    type: str = 'VALC'

@@ -23,4 +23,10 @@ async def get_data(star_name: str) -> models.Data:
 @router.get('/names/')
 @catch_exceptions
 async def get_all_names() -> List[str]:
-    return await mongo.get_all_names()
+    return await mongo.get_all_names('FULU')
+
+
+@router.get('/names-valc/')
+@catch_exceptions
+async def get_all_names() -> List[str]:
+    return await mongo.get_all_names('VALC')

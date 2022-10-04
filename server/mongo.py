@@ -1,6 +1,6 @@
 import dataclasses
 import logging
-from typing import List
+from typing import List, Union
 from typing import Optional
 
 import dacite
@@ -19,11 +19,13 @@ def get_collection():
     return db.light
 
 
-async def insert_data(document: models.Data) -> str:
+async def insert_data(document: Union[models.Data, models.DataVALC]) -> str:
     collection = get_collection()
     new_document = dataclasses.asdict(document)
 
-    old_document = await collection.find_one({'name': document.name})
+    old_document = await collection.find_one(
+        {'name': document.name, 'type': document.type},
+    )
     if old_document:
         old_id = old_document['_id']
         await collection.replace_one({'_id': old_id}, new_document)
@@ -40,5 +42,5 @@ async def get_data(name: str) -> Optional[models.Data]:
     return dacite.from_dict(models.Data, data)
 
 
-async def get_all_names() -> List[str]:
-    return await get_collection().distinct('name')
+async def get_all_names(type: str = 'FULU') -> List[str]:
+    return await get_collection().find({'type': type}).distinct('name')
