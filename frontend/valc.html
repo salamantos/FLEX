@@ -41,7 +41,44 @@
 
         <div id="description">
             <h2>VALC</h2>
-            bla bla
+            <p>
+                VALC is Python package, which is devoted to post-processing of
+                ZTF Forced
+                Photometry light curves and conducting statistical test to
+                reject the hypothesis of a
+                constant with white noise. The purpose of the work in
+                confirmation of the presence
+                of active galactic nuclei (AGN) type-1 in the host galaxies of
+                candidates. Tests of the
+                algorithm was provided on a sample of AGN, powered by
+                intermediate mass black
+                holes (IMBH; M < 2*10^5 M&#9737;) and low-weighted supermassive black
+                holes
+                (LWSMBH; M < 2*10^6 M&#9737;).
+                Post-processing includes outlier filtering, color correction
+                and zero-point correction.
+                The key advantage of the algorithm is the subtraction magnitude
+                of the median
+                comparison star, which is exstracted from 50 nearest
+                non-variable stars. [1,2].
+            </p>
+            <p>
+                [1]Demianenko M. et al., "Optical Variability of "Light-weight"
+                Supermassive Black
+                Holes at a Few Percent Level from ZTF Forced-Photometry Light
+                Curves",
+                Proceedings of ADASS-2021 conference, 2022,
+                <a href="https://arxiv.org/abs/2201.03712">https://arxiv.org/abs/2201.03712</a>
+            </p>
+            <p>
+                [2]Demianenko M. et al., "Optical light curves of light-weight
+                supermassive black holes produced by the Zwicky Transient
+                Facility Forced Photometry Service", Proceedings of VAK-2021
+                conference, 2021, <a href="https://arxiv.org/abs/2112.11520">https://arxiv.org/abs/2112.11520</a>
+            <p>
+                <a href="https://github.com/masha-astro/optical_variability_ztf">https://github.com/masha-astro/optical_variability_ztf</a>
+
+            </p>
         </div>
     </div>
 </div>
@@ -104,7 +141,7 @@
 
     function show_images(data) {
         let innerHTML = ''
-        for (const image_url of data.images) {
+        for (const image_url of data.images || []) {
             innerHTML += `<img src="${image_url}" alt=""/>`
         }
         document.getElementById('images').innerHTML = innerHTML

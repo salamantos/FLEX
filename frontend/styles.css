@@ -38,6 +38,7 @@ body {
 #description {
     width: 80%;
     margin: 0 auto;
+    font-weight: 300;
 }
 
 #description h2 {
