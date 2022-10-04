@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from fastapi import APIRouter, HTTPException
 
@@ -11,7 +11,7 @@ router = APIRouter(prefix='/api')
 
 @router.get('/data/{star_name}/')
 @catch_exceptions
-async def get_data(star_name: str) -> models.Data:
+async def get_data(star_name: str) -> Union[models.Data, models.DataVALC]:
     data = await mongo.get_data(star_name)
 
     if data is None:

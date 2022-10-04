@@ -35,7 +35,7 @@ async def insert_data(document: Union[models.Data, models.DataVALC]) -> str:
         return str(result.inserted_id)
 
 
-async def get_data(name: str) -> Optional[models.Data]:
+async def get_data(name: str) -> Optional[Union[models.Data, models.DataVALC]]:
     data = await get_collection().find_one({'name': name})
     if data is None:
         return None
