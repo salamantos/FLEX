@@ -9,10 +9,12 @@ from server.utils import catch_exceptions
 router = APIRouter(prefix='/api')
 
 
-@router.get('/data/{star_name}/')
+@router.get('/data/{type}/{star_name}/')
 @catch_exceptions
-async def get_data(star_name: str) -> Union[models.Data, models.DataVALC]:
-    data = await mongo.get_data(star_name)
+async def get_data(
+        star_name: str, type: str,
+) -> Union[models.Data, models.DataVALC]:
+    data = await mongo.get_data(star_name, type)
 
     if data is None:
         raise HTTPException(detail='Star data not found', status_code=404)

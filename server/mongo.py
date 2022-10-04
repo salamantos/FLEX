@@ -35,12 +35,14 @@ async def insert_data(document: Union[models.Data, models.DataVALC]) -> str:
         return str(result.inserted_id)
 
 
-async def get_data(name: str) -> Optional[Union[models.Data, models.DataVALC]]:
-    data = await get_collection().find_one({'name': name})
+async def get_data(
+        name: str, type: str,
+) -> Optional[Union[models.Data, models.DataVALC]]:
+    data = await get_collection().find_one({'name': name, 'type': type})
     if data is None:
         return None
 
-    if data['type'] == 'FULU':
+    if data.get('type') == 'FULU':
         return dacite.from_dict(models.Data, data)
     elif data['type'] == 'VALC':
         return dacite.from_dict(models.DataVALC, data)
