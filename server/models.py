@@ -1,5 +1,5 @@
 import dataclasses
-from typing import List
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -28,5 +28,6 @@ class DataVALC:
     name: str
 
     params: dict
+    images: Optional[List[str]]
 
     type: str = 'VALC'
