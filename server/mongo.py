@@ -39,7 +39,13 @@ async def get_data(name: str) -> Optional[Union[models.Data, models.DataVALC]]:
     data = await get_collection().find_one({'name': name})
     if data is None:
         return None
-    return dacite.from_dict(models.Data, data)
+
+    if data['type'] == 'FULU':
+        return dacite.from_dict(models.Data, data)
+    elif data['type'] == 'VALC':
+        return dacite.from_dict(models.DataVALC, data)
+    else:
+        return None
 
 
 async def get_all_names(type: str = 'FULU') -> List[str]:
