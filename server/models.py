@@ -1,5 +1,5 @@
 import dataclasses
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 
 @dataclasses.dataclass
@@ -19,6 +19,9 @@ class Data:
     flux_1_error_aug: List[float]
     flux_0_aug: List[float]
     flux_1_aug: List[float]
+
+    peaks_sum: Optional[float]
+    peaks: Optional[Dict[str, float]]
 
     type: str = 'FULU'
 
