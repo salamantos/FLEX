@@ -16,7 +16,8 @@ body {
     color: white;
 
     width: 25%;
-    /*height: 100%;*/
+    height: 100vh;
+    position: fixed;
 
     box-shadow: 1px 0 5px #9D9D9D;
     z-index: 2;
@@ -27,7 +28,11 @@ body {
 
 .right_side {
     width: 75%;
-    /*height: 100vh;*/
+    margin-left: 25%;
+}
+
+.left_side_fixed_height {
+    flex: 0 1 auto;
 }
 
 #data {
@@ -136,10 +141,8 @@ h3 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
+    flex: 1 1 auto;
+    align-content: start;
     overflow-y: scroll;
 }
 

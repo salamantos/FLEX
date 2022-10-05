@@ -17,19 +17,19 @@
 <body>
 <div class="container">
     <div class="left_side">
-        <div class="menu">
+        <div class="menu left_side_fixed_height">
             <a class="logo_header logo_header_active" href="fulu.html">
                 FULU
             </a><a class="logo_header" href="valc.html">
             VALC
         </a>
         </div>
-        <div class="info">
+        <div class="info left_side_fixed_height">
             <div class="arrow arrow_left"></div>
             <span><b>Choose name from the list below &#8595;</b></span>
         </div>
         <input type="text" id="name_input" placeholder="Search.."
-               oninput="onSearch()">
+               oninput="onSearch()" class="left_side_fixed_height">
         <div id="all_names"></div>
     </div>
     <div class="right_side">
@@ -92,8 +92,8 @@
 
 <script>
 
-    const HOST = '/api'
-    // const HOST = 'http://84.201.157.77:7001/api'
+    // const HOST = '/api'
+    const HOST = 'http://84.201.157.77:7001/api'
 
     let NAMES = []
 
@@ -266,7 +266,7 @@
 
     function show_peak_info(data) {
         const peak2label = {
-            magnitudes: 'magnitude',
+            magnitudes: 'magnitude_sum',
             magnitudes_g: 'magnitude_g',
             magnitudes_r: 'magnitude_r',
             fluxes: 'flux',
