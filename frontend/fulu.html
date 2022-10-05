@@ -36,6 +36,7 @@
         <div id="data">
             <h2 id="name_header"></h2>
             <div id="plot"></div>
+            <div id="peak_info" class="div-table"></div>
         </div>
 
         <div id="description">
@@ -68,9 +69,21 @@
             </p>
             <p>[2]Demianenko M. et al., "Toward an understanding of the
                 properties of neural network approaches for supernovae light
-                curve approximation", 2022, <a href="https://arxiv.org/abs/2209.07542">https://arxiv.org/abs/2209.07542</a>
+                curve approximation", 2022, <a
+                        href="https://arxiv.org/abs/2209.07542">https://arxiv.org/abs/2209.07542</a>
             </p>
-            <p><a href="https://github.com/HSE-LAMBDA/fulu">https://github.com/HSE-LAMBDA/fulu</a></p>
+            <p>
+                <a href="https://github.com/HSE-LAMBDA/fulu">https://github.com/HSE-LAMBDA/fulu</a>
+            </p>
+            <br/>
+            <p>
+                <h4>Peak tables available here:</h4>
+                <a href="peaks/BNN_peaks.csv">BNN_peaks.csv</a><br/>
+                <a href="peaks/GP_C1_0*Matern_*_RBF1,_1_+_Matern_+_WhiteKernel_peaks.csv">GP_C1_0*Matern_*_RBF1,_1_+_Matern_+_WhiteKernel_peaks.csv</a><br/>
+                <a href="peaks/NF_peaks.csv">NF_peaks.csv</a><br/>
+                <a href="peaks/NN%20(pytorch)_peaks.csv">NN (pytorch)_peaks.csv</a><br/>
+                <a href="peaks/NN%20(sklearn)_peaks.csv">NN (sklearn)_peaks.csv</a>
+            </p>
 
         </div>
     </div>
@@ -79,7 +92,8 @@
 
 <script>
 
-    const HOST = '/api'
+    // const HOST = '/api'
+    const HOST = 'http://84.201.157.77:7001/api'
 
     let NAMES = []
 
@@ -117,6 +131,11 @@
         const time_min = Math.min(...data['time'])
         const time_max = Math.max(...data['time'])
 
+        let y_min = Math.min(...data.flux_0_aug, ...data.flux_1_aug)
+        let y_max = Math.max(...data.flux_0_aug, ...data.flux_1_aug)
+        const y_diff = y_max - y_min
+        y_min -= y_diff * 0.25
+        y_max += y_diff * 0.25
 
         const green_error_aug = {
             x: data.time_error_aug,
@@ -191,8 +210,21 @@
             name: "r observed",
         }
 
+        const peak = {
+            x0: data.peaks_sum,
+            x1: data.peaks_sum,
+            y0: y_min,
+            y1: y_max,
+            type: 'line',
+            line: {
+                color: 'grey',
+                width: 2,
+                dash: 'dot'
+            },
+            name: "peaks sum",
+        }
 
-        const plot_data = [green_aug, red_aug, green_error_aug, red_error_aug, green_dots, red_dots]
+        const plot_data = [green_aug, red_aug, green_error_aug, red_error_aug, green_dots, red_dots, peak]
 
 
         const layout = {
@@ -223,14 +255,31 @@
                 zeroline: false,
                 title: {text: "Flux [mJy]"}
             },
+            shapes: [peak],
 
         }
         Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
     }
 
+    function show_peak_info(data) {
+        let innerHTML = '<h3 style="margin-left: 10px; font-weight: 200">Peak info</h3>'
+        for (const [peak, value] of Object.entries(data.peaks)) {
+            let precision = 100000
+            if (peak.includes('magnitudes')) precision = 100
+            innerHTML += `<div class="div-table-row">
+                <div class="div-table-col">${peak}</div>
+                <div class="div-table-col">${Math.round(value * precision) / precision}</div>
+            </div>`
+        }
+        document.getElementById('peak_info').innerHTML = innerHTML
+    }
+
     function onNameClick(name) {
         document.getElementById('name_header').textContent = name
-        request(`${HOST}/data/FULU/${name}`, data => plot(data))
+        request(`${HOST}/data/FULU/${name}`, data => {
+            plot(data)
+            show_peak_info(data)
+        })
         document.getElementById('description').style.display = 'none'
         document.getElementById('data').style.display = 'block'
     }
