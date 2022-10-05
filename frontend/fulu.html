@@ -93,6 +93,7 @@
 <script>
 
     const HOST = '/api'
+    // const HOST = 'http://84.201.157.77:7001/api'
 
     let NAMES = []
 
@@ -127,8 +128,11 @@
     }
 
     function plot(data) {
-        const time_min = Math.min(...data['time'])
-        const time_max = Math.max(...data['time'])
+        let time_min = Math.min(...data.time, ...data.time_aug, ...data.time_error_aug)
+        let time_max = Math.max(...data.time, ...data.time_aug, ...data.time_error_aug)
+        const time_diff = time_max - time_min
+        time_min -= time_diff * 0.1
+        time_max += time_diff * 0.1
 
         let y_min = Math.min(...data.flux_0_aug, ...data.flux_1_aug)
         let y_max = Math.max(...data.flux_0_aug, ...data.flux_1_aug)
@@ -261,12 +265,23 @@
     }
 
     function show_peak_info(data) {
+        const peak2label = {
+            magnitudes: 'magnitude',
+            magnitudes_g: 'magnitude_g',
+            magnitudes_r: 'magnitude_r',
+            fluxes: 'flux',
+            fluxes_g: 'flux_g',
+            fluxes_r: 'flux_r',
+            times_sum: 'MJD_sum',
+            times_g: 'MJD_g',
+            times_r: 'MJD_r',
+        }
         let innerHTML = '<h3 style="margin-left: 10px; font-weight: 200">Peak info</h3>'
         for (const [peak, value] of Object.entries(data.peaks)) {
             let precision = 100000
             if (peak.includes('magnitudes')) precision = 100
             innerHTML += `<div class="div-table-row">
-                <div class="div-table-col">${peak}</div>
+                <div class="div-table-col">${peak2label[peak]}</div>
                 <div class="div-table-col">${Math.round(value * precision) / precision}</div>
             </div>`
         }
