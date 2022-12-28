@@ -23,11 +23,13 @@ services:
 
   flex_mongo:
     container_name: flex_mongo
-    image: mongo
+    image: mongo:4.4.6
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: salamantos
       MONGO_INITDB_ROOT_PASSWORD: RucKwFpYFAQmrO4mWwth
+    volumes:
+      - /var/www/light_curves/db:/data/db
 
   flex_mongo-express:
     container_name: flex_mongo_express
