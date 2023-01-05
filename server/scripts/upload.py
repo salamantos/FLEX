@@ -19,8 +19,9 @@ for file_name in FILES:
 
         result = {
             'name': name,
-            'time_with_error': [],
-            'time': [],
+            #'time_with_error': [],
+            'time_0': [],
+            'time_1': [],
             'flux_0_with_error': [],
             'flux_1_with_error': [],
             'flux_0': [],
@@ -30,17 +31,18 @@ for file_name in FILES:
         for i in range(len(data['time'])):
             err = data['flux_err'][i]
             if data['passband'][i] == 0:
-                result['time_with_error'].append(data['time'][i])
-                result['time'].append(data['time'][i])
+                #result['time_with_error'].append(data['time'][i])
+                result['time_0'].append(data['time'][i])
                 result['flux_0_with_error'].append(data['flux'][i] - err)
                 result['flux_0'].append(data['flux'][i])
             else:
+                result['time_1'].append(data['time'][i])
                 result['flux_1_with_error'].append(data['flux'][i] - err)
                 result['flux_1'].append(data['flux'][i])
         for i in reversed(range(len(data['time']))):
             err = data['flux_err'][i]
             if data['passband'][i] == 0:
-                result['time_with_error'].append(data['time'][i])
+                #result['time_with_error'].append(data['time'][i])
                 result['flux_0_with_error'].append(data['flux'][i] + err)
             else:
                 result['flux_1_with_error'].append(data['flux'][i] + err)
