@@ -1,7 +1,7 @@
 # FLEX
 ### Light curve visualization site
 
-https://lc-dev.voxastro.org
+http://lc-dev.voxastro.org
 
 FLEX - **F**ulu **L**ibrary **EX**amples - is a website visualizing light curves of astronomical transients (SN, TDE etc.) and Active Galactic Nucleas (AGN)
 
