@@ -2,7 +2,7 @@ import json
 
 import requests
 
-BATCH_SIZE = 10
+BATCH_SIZE = 100
 
 
 def upload():
