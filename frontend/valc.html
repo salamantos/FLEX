@@ -132,6 +132,28 @@
 
     let NAMES = []
 
+    //rounding to exponencial form of number
+    function expo(x, f) {
+        return Number.parseFloat(x).toExponential(f);
+    }
+    function round(x, f) {
+        return Number.parseFloat(x).toFixed(f);
+    }
+    function show_exp(obj) {
+        var obj2 = []
+        for (x of Object.values(obj)){
+            obj2.push( expo(x,2))
+        }
+        return obj2
+    }
+    function show_fix(obj) {
+        var obj2 = []
+        for (x of Object.values(obj)){
+            obj2.push( round(x,2))
+        }
+        return obj2
+    }
+
     function request(url, callback) {
         let xhr = new XMLHttpRequest()
         xhr.onload = function () {
@@ -167,15 +189,23 @@
         for (const [param, value] of Object.entries(data.params)) {
             if (!value) continue
             let col_value = value
-            if (param === 'Statistics') {
+            if (param === 'Statistics' || param === 'source') {
                 col_value = Object.values(value).map(stat => `<li>${stat}</li>`).reduce(
                     (a, b) => a + b, '',
                 )
                 col_value = `<ol class="params_list">${col_value}</ol>`
             }
-            if (param === 'rcsed' || param === 'page.html') {
+            if (param === 'rcsed' || param === 'page.html' || param === 'page_all_fit') {
                 col_value = `<a href="${value}">${value}</a>`
             }
+            if (param === 'L_X'|| param === 'MBH' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'NH') {
+                col_value = show_exp(value)
+                col_value = `<ol class="params_list">${col_value}</ol>`
+            }//rounding to exponencial form of number 
+            if (param === 'Gamma') {
+                col_value = show_fix(value)
+                col_value = `<ol class="params_list">${col_value}</ol>`
+            }//rounding to fixed number after point 
             innerHTML += `<div class="div-table-row">
                 <div class="div-table-col">${param}</div>
                 <div class="div-table-col">${col_value}</div>
