@@ -31,6 +31,7 @@ def process(file_name, result_list):
             'Table from': no_nan(data.get('Table from: ')),
             'rcsed': no_nan(data.get('rcsed')),
             'page.html': no_nan(data.get('page.html')),
+            'page_all_fit': no_nan(data.get('page_all_fit')),
         },
         images=[url for url in [
             no_nan(data.get('cutout')),
