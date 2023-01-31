@@ -79,8 +79,9 @@ def process(algo):
 
         result = {
             'name': name,
-            'time': [],
-            'time_error': [],
+            'time_0': [],
+            'time_1': [],
+            #'time_error': [],
             'flux_0_error': [],
             'flux_1_error': [],
             'flux_0': [],
@@ -97,16 +98,17 @@ def process(algo):
 
         for i in range(len(data['time'])):
             if data['passband'][i] == 0:
-                result['time_error'].append(data['time'][i])
-                result['time'].append(data['time'][i])
+                #result['time_error'].append(data['time'][i])
+                result['time_0'].append(data['time'][i])
                 result['flux_0_error'].append(data['flux_err'][i])
                 result['flux_0'].append(data['flux'][i])
             else:
+                result['time_1'].append(data['time'][i])
                 result['flux_1_error'].append(data['flux_err'][i])
                 result['flux_1'].append(data['flux'][i])
         for i in reversed(range(len(data['time']))):
             if data['passband'][i] == 0:
-                result['time_error'].append(data['time'][i])
+                #result['time_error'].append(data['time'][i])
                 result['flux_0_error'].append(data['flux_err'][i])
             else:
                 result['flux_1_error'].append(data['flux_err'][i])
@@ -124,7 +126,7 @@ def process(algo):
         for i in reversed(range(len(data['time_aug']))):
             err = data['flux_err_aug'][i]
             if data['passband_aug'][i] == 0:
-                result['time_error_aug'].append(data['time_aug'][i])
+                result['time_error_aug'].append(data['time_aug'][i]) #add reversed times and fluxes for showing aug err
                 result['flux_0_error_aug'].append(data['flux_aug'][i] + err)
             else:
                 result['flux_1_error_aug'].append(data['flux_aug'][i] + err)

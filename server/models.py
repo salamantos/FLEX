@@ -15,7 +15,7 @@ class Data:
     flux_1: List[float]
 
     time_aug: List[float]
-    #time_error_aug: List[float]
+    time_error_aug: List[float]
     flux_0_error_aug: List[float]
     flux_1_error_aug: List[float]
     flux_0_aug: List[float]
