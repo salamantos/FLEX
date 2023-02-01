@@ -15,6 +15,7 @@ def process(file_name, result_list):
     with open(os.path.join(DIRECTORY, file_name), 'r') as f:
         data = json.load(f)
 
+    images_all = data.get('cutout') + data.get('ESIfull') + data.get('MagEfull') + data.get('SALTfull')+ data.get('SALTnonp') + data.get('ESInonp') + data.get('MagEnonp')
     result_list.append(dict(
         name=data['name'],
         params={
@@ -34,10 +35,6 @@ def process(file_name, result_list):
             'page.html': no_nan(data.get('page.html')),
             'page_all_fit': no_nan(data.get('page_all_fit')),
         },
-        images_all = data.get('cutout') + data.get('ESIfull')\
-             + data.get('MagEfull') + data.get('SALTfull')\
-             + data.get('SALTnonp') + data.get('ESInonp')\ 
-            + data.get('MagEnonp')
         images=[url for url in images_all if url],
     ))
 
