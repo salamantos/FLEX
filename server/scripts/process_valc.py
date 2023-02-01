@@ -15,7 +15,8 @@ def process(file_name, result_list):
     with open(os.path.join(DIRECTORY, file_name), 'r') as f:
         data = json.load(f)
 
-    images_all = data.get('cutout') + data.get('ESIfull') + data.get('MagEfull') + data.get('SALTfull')+ data.get('SALTnonp') + data.get('ESInonp') + data.get('MagEnonp')
+    images_all = data.get('ESIfull') + data.get('MagEfull') + data.get('SALTfull')+ data.get('SALTnonp') + data.get('ESInonp') + data.get('MagEnonp')
+    images_all.append(data.get('cutout'))
     result_list.append(dict(
         name=data['name'],
         params={
