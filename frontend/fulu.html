@@ -105,7 +105,7 @@
 <script>
 
     const HOST = '/api'
-    // const HOST = 'http://84.201.157.77:7001/api'
+    // const HOST = 'http://localhost:7001/api'
 
     let NAMES = []
 
@@ -140,8 +140,8 @@
     }
 
     function plot(data) {
-        let time_min = Math.min(...data.time, ...data.time_aug, ...data.time_error_aug)
-        let time_max = Math.max(...data.time, ...data.time_aug, ...data.time_error_aug)
+        let time_min = Math.min(...data.time_0, ...data.time_1, ...data.time_aug, ...data.time_error_aug)
+        let time_max = Math.max(...data.time_0, ...data.time_1, ...data.time_aug, ...data.time_error_aug)
         const time_diff = time_max - time_min
         time_min -= time_diff * 0.1
         time_max += time_diff * 0.1
