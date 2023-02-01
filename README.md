@@ -16,4 +16,4 @@ Light curves from Zwicky Transient Facility [(ZTF)](https://www.ztf.caltech.edu/
 2. Run in terminal `docker-compose up -d`. If you need to restart just one container, run `docker-compose build flex_frontend && sudo docker-compose up -d flex_frontend`
 3. Replace `HOST` in frontend/fulu.html and frontend/valc.html with `'http://localhost:7001/api'`. **IMPORTANT: don't forget to return it back to PROD value!**
 4. Open frontend/index.html in browser (preferably Firefox). You may need to disable CORS. To do this, install adn enable CORS Everywhere Firefox extension
-5. Now you need to upload data to your local setup. Simply replace host in upload script to `http://localhost:7001/api_private/data/`
+5. Now you need to upload data to your local setup. Simply replace host in upload script to `http://localhost:7001`
