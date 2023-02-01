@@ -34,15 +34,11 @@ def process(file_name, result_list):
             'page.html': no_nan(data.get('page.html')),
             'page_all_fit': no_nan(data.get('page_all_fit')),
         },
-        images=[url for url in [
-            no_nan(data.get('cutout')),
-            no_nan(data.get('ESIfull')),
-            no_nan(data.get('MagEfull')),
-            no_nan(data.get('SALTfull')),
-            no_nan(data.get('SALTnonp')),
-            no_nan(data.get('ESInonp')),
-            no_nan(data.get('MagEnonp')),
-        ] if url],
+        images_all = data.get('cutout') + data.get('ESIfull')\
+             + data.get('MagEfull') + data.get('SALTfull')\
+             + data.get('SALTnonp') + data.get('ESInonp')\ 
+            + data.get('MagEnonp')
+        images=[url for url in images_all if url],
     ))
 
 
