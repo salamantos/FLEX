@@ -107,6 +107,10 @@
                     <div class="div-table-col">Black Hole Mass from 'results_emis_fit2d_ESI.fits'</div>
                 </div>
                 <div class="div-table-row">
+                    <div class="div-table-col">MBH_SALT</div>
+                    <div class="div-table-col">Black Hole Mass from '/data1/IMBH/SALT/results_emis_fit2d.fits'</div>
+                </div>
+                <div class="div-table-row">
                     <div class="div-table-col">L_X; NH; Gamma</div>
                     <div class="div-table-col">luminosity and parameters of the X-ray data</div>
                 </div>
@@ -210,7 +214,7 @@
             if (param === 'rcsed' || param === 'page.html' || param === 'page_all_fit') {
                 col_value = `<a href="${value}">${value}</a>`
             }
-            if (param === 'L_X'|| param === 'MBH' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'NH') {
+            if (param === 'L_X'|| param === 'MBH' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT' || param === 'NH') {
                 col_value = show_exp(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
             }//rounding to exponencial form of number 
