@@ -2,6 +2,7 @@ import json
 
 import requests
 
+HOST = 'http://lc-dev.voxastro.org'
 ALGOS = {
     'GP': {
         'suffix': 'GP',
@@ -37,11 +38,13 @@ def upload(algo):
         full_result = json.load(f)
         i = 0
         while i < len(full_result):
-            requests.post(
-                # 'http://84.201.157.77:7001/api_private/data/',
-                'http://lc-dev.voxastro.org/api_private/data/',
+            response = requests.post(
+                f'{HOST}/api_private/data/',
                 json=full_result[i:i + BATCH_SIZE],
             )
+            if not response.ok:
+                print(response.status_code, response.json())
+                raise Exception
             print(f'Uploaded [{i}:{i + BATCH_SIZE}) of {len(full_result)}')
             i += BATCH_SIZE
 

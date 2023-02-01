@@ -2,6 +2,7 @@ import json
 
 import requests
 
+HOST = 'http://lc-dev.voxastro.org'
 BATCH_SIZE = 100
 
 
@@ -10,11 +11,13 @@ def upload():
         result_list = json.load(f)
         i = 0
         while i < len(result_list):
-            requests.post(
-                # 'http://84.201.157.77:7001/api_private/data-valc/',
-                'http://lc-dev.voxastro.org/api_private/data-valc/',
+            response = requests.post(
+                f'{HOST}/api_private/data-valc/',
                 json=result_list[i:i + BATCH_SIZE],
             )
+            if not response.ok:
+                print(response.status_code, response.json())
+                raise Exception
             print(f'Uploaded [{i}:{i + BATCH_SIZE}) of {len(result_list)}')
             i += BATCH_SIZE
 
