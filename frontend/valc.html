@@ -35,6 +35,7 @@
     <div class="right_side">
         <div id="data">
             <h2 id="name_header"></h2>
+            <div id="plot"></div>
             <div id="params" class="div-table"></div>
             <div id="images"></div>
         </div>
@@ -197,7 +198,44 @@
         show_all_names(names)
     }
 
-    function plot(data) {
+    function plot(all_data) {
+        const data = all_data.plot
+        const trace_c = {
+          x: data.MJD_before_c,
+          y: data.flux_before_c,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_c,
+              visible: true
+            },
+            marker: {
+                color: "rgba(21,152,175,0.3)",
+                size: 4
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'before - c',
+        }
+        const trace_o = {
+          x: data.MJD_before_o,
+          y: data.flux_before_o,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_o,
+              visible: true
+            },
+            marker: {
+                color: "rgba(162,55,204,0.3)",
+                size: 4
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'before - o',
+        }
+
+        const plot_data = [trace_c, trace_o]
+
+        Plotly.newPlot('plot', plot_data, {scrollZoom: true})
     }
 
     function show_params(data) {
@@ -217,7 +255,7 @@
             if (param === 'L_X'|| param === 'MBH' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT' || param === 'NH') {
                 col_value = show_exp(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
-            }//rounding to exponencial form of number 
+            }//rounding to exponential form of number
             if (param === 'Gamma') {
                 col_value = show_fix(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
