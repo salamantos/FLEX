@@ -203,11 +203,11 @@
         if (data === null) return
 
         const trace_c = {
-          x: data.MJD_before_c,
-          y: data.flux_before_c,
+          x: data.MJD_after_c,
+          y: data.flux_after_c,
             error_y: {
               type: 'data',
-              array: data.flux_err_before_c,
+              array: data.flux_err_after_c,
               visible: true
             },
             marker: {
@@ -216,14 +216,14 @@
             },
           mode: 'markers',
           type: 'scatter',
-            name: 'before - c',
+            name: 'c after',
         }
         const trace_o = {
-          x: data.MJD_before_o,
-          y: data.flux_before_o,
+          x: data.MJD_after_o,
+          y: data.flux_after_o,
             error_y: {
               type: 'data',
-              array: data.flux_err_before_o,
+              array: data.flux_err_after_o,
               visible: true
             },
             marker: {
@@ -232,7 +232,7 @@
             },
           mode: 'markers',
           type: 'scatter',
-            name: 'before - o',
+            name: 'o after',
         }
 
         const plot_data = [trace_c, trace_o]
