@@ -67,9 +67,9 @@ def process_plot(file_name, result_map: dict):
 
 
 result_map = {}
-# files = os.listdir(DIRECTORY_TABLES)
-# for file in files:
-#     process_table(file, result_map)
+files = os.listdir(DIRECTORY_TABLES)
+for file in files:
+    process_table(file, result_map)
 files = os.listdir(DIRECTORY_PLOTS)
 for file in files:
     process_plot(file, result_map)

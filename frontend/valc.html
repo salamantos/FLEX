@@ -149,7 +149,7 @@
 
     let NAMES = []
 
-    //rounding to exponencial form of number
+    //rounding to exponential form of number
     function expo(x, f) {
         return Number.parseFloat(x).toExponential(f);
     }
@@ -200,6 +200,8 @@
 
     function plot(all_data) {
         const data = all_data.plot
+        if (data === null) return
+
         const trace_c = {
           x: data.MJD_before_c,
           y: data.flux_before_c,
@@ -209,7 +211,7 @@
               visible: true
             },
             marker: {
-                color: "rgba(21,152,175,0.3)",
+                color: "rgba(0,255,255,0.3)",
                 size: 4
             },
           mode: 'markers',
@@ -225,7 +227,7 @@
               visible: true
             },
             marker: {
-                color: "rgba(162,55,204,0.3)",
+                color: "rgba(255,165,0,0.3)",
                 size: 4
             },
           mode: 'markers',
