@@ -235,7 +235,7 @@
             name: 'o after',
         }
 
-        const layout = {
+        const layout_atlas = {
           title: {
             text:'ATLAS',
             font: {
@@ -266,12 +266,77 @@
             }
           }
         }
+        const trace_g = {
+          x: data.MJD_after_g,
+          y: data.flux_after_g,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_after_g,
+              visible: true
+            },
+            marker: {
+                color: "rgba( 39, 174, 96 ,0.5)",
+                size: 4
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'g after',
+        }
+        const trace_r = {
+          x: data.MJD_after_r,
+          y: data.flux_after_r,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_after_r,
+              visible: true
+            },
+            marker: {
+                color: "rgba( 236, 112, 99 ,0.5)",
+                size: 4
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'r after',
+        }
+        const layout_ztf = {
+          title: {
+            text:'ZTF',
+            font: {
+              family: 'Courier New, monospace',
+              size: 24
+            },
+            xref: 'paper',
+            x: 0.05,
+          },
+          xaxis: {
+            title: {
+              text: 'MJD',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            },
+          },
+          yaxis: {
+            title: {
+              text: 'Magnitude',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            }
+          }
+        }
 
 
 
-        const plot_data = [trace_c, trace_o]
+        const plot_data_atlas = [trace_c, trace_o]
+        const plot_data_ztf = [trace_g, trace_r]
 
-        Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
+        Plotly.newPlot('plot', plot_data_atlas, layout_atlas, {scrollZoom: true})
+        Plotly.newPlot('plot', plot_data_ztf, layout_ztf, {scrollZoom: true})
     }
 
     function show_params(data) {
