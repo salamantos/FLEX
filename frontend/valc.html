@@ -235,9 +235,43 @@
             name: 'o after',
         }
 
+        const layout = {
+          title: {
+            text:'ATLAS',
+            font: {
+              family: 'Courier New, monospace',
+              size: 24
+            },
+            xref: 'paper',
+            x: 0.05,
+          },
+          xaxis: {
+            title: {
+              text: 'MJD',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            },
+          },
+          yaxis: {
+            title: {
+              text: 'Flux [mJy]',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            }
+          }
+        }
+
+
+
         const plot_data = [trace_c, trace_o]
 
-        Plotly.newPlot('plot', plot_data, {scrollZoom: true})
+        Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
     }
 
     function show_params(data) {
