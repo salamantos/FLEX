@@ -24,7 +24,7 @@ def process_table(file_name, result_map: dict):
             'Statistics': no_nan(data.get('Statistics')),
             'ra': no_nan(data.get('ra')),
             'dec': no_nan(data.get('dec')),
-            'MBH': no_nan(data.get('MBH')),
+            'MBH_SDSS': no_nan(data.get('MBH')),
             'MBH_MagE': no_nan(data.get('MBH_MagE')),
             'MBH_ESI': no_nan(data.get('MBH_ESI')),
             'MBH_SALT': no_nan(data.get('MBH_SALT')),

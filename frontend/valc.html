@@ -96,7 +96,7 @@
                     <div class="div-table-col">object coordinates</div>
                 </div>
                 <div class="div-table-row">
-                    <div class="div-table-col">MBH</div>
+                    <div class="div-table-col">MBH_SDSS</div>
                     <div class="div-table-col">Black Hole Mass from 'lowmass_allxray_2812.fits'</div>
                 </div>
                 <div class="div-table-row">
@@ -211,7 +211,7 @@
               visible: true
             },
             marker: {
-                color: "rgba(0,255,255,0.3)",
+                color: "rgba(0,0,255,0.3)",
                 size: 4
             },
           mode: 'markers',
@@ -254,7 +254,7 @@
             if (param === 'rcsed' || param === 'page.html' || param === 'page_all_fit') {
                 col_value = `<a href="${value}">${value}</a>`
             }
-            if (param === 'L_X'|| param === 'MBH' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT' || param === 'NH') {
+            if (param === 'L_X'|| param === 'MBH_SDSS' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT' || param === 'NH') {
                 col_value = show_exp(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
             }//rounding to exponential form of number
