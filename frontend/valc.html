@@ -209,7 +209,23 @@
 <script type="text/javascript">
     let aladin;
     A.init.then(() => {
-        aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:60});
+        aladin = A.aladin('#aladin-lite-div', {survey: "CDS/P/ZTF/DR7/color", fov:1, target: data.ra + " " + data.dec});
+    });
+</script>
+<div id="aladin-lite-div" style="width:400px;height:400px;"></div>
+<script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
+<script type="text/javascript">
+    let aladin;
+    A.init.then(() => {
+        aladin = A.aladin('#aladin-lite-div', {survey: "CDS/P/ZTF/DR7/r", fov:1, target: data.ra + " " + data.dec});
+    });
+</script>
+<div id="aladin-lite-div" style="width:400px;height:400px;"></div>
+<script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
+<script type="text/javascript">
+    let aladin;
+    A.init.then(() => {
+        aladin = A.aladin('#aladin-lite-div', {survey: "CDS/P/ZTF/DR7/g", fov:1, target: data.ra + " " + data.dec});
     });
 </script>
 <script>

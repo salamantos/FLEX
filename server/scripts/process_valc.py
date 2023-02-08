@@ -109,9 +109,12 @@ result_map = {}
 files = os.listdir(DIRECTORY_TABLES)
 for file in files:
     process_table(file, result_map)
-files = os.listdir(DIRECTORY_PLOTS)
+files = os.listdir(DIRECTORY_PLOTS_ATLAS)
 for file in files:
-    process_plot(file, result_map)
+    process_plot_atlas(file, result_map)
+files = os.listdir(DIRECTORY_PLOTS_ZTF)
+for file in files:
+    process_plot_ztf(file, result_map)
 
 with open('processed/valc/valc.json', 'w') as f:
     json.dump(list(result_map.values()), f)
