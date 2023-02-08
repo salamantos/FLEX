@@ -3,8 +3,8 @@ import math
 import os
 
 DIRECTORY_TABLES = 'data/valc/tables'
-DIRECTORY_ATLAS = 'data/valc/plots_atlas'
-DIRECTORY_ZTF = 'data/valc/plots_ztf'
+DIRECTORY_PLOTS_ATLAS = 'data/valc/plots_atlas'
+DIRECTORY_PLOTS_ZTF = 'data/valc/plots_ztf'
 
 
 def no_nan(value):
