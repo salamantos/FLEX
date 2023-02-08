@@ -5,9 +5,10 @@ http://lc-dev.voxastro.org
 
 FLEX - **F**ulu **L**ibrary **EX**amples - is a website visualizing light curves of astronomical transients (SN, TDE etc.) and Active Galactic Nucleas (AGN)
 
-It uses approximation neural network models from Fulu library: https://github.com/HSE-LAMBDA/fulu
+Fulu part uses approximation neural network models from Fulu library: https://github.com/HSE-LAMBDA/fulu
 
-Light curves from Zwicky Transient Facility [(ZTF)](https://www.ztf.caltech.edu/)
+Light curves for Fulu from Zwicky Transient Facility [(ZTF)](https://www.ztf.caltech.edu/) data release
+Light curves for Valc from [ZTF Forced Photometry service](https://web.ipac.caltech.edu/staff/fmasci/ztf/forcedphot.pdf) and Asteroid Terrestrial-impact Last Alert System Forced Photometry service [(ATLAS)](https://fallingstar-data.com/forcedphot/)
 
 
 ### Development
