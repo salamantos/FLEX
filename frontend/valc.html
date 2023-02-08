@@ -197,7 +197,18 @@
         NAMES = names
         show_all_names(names)
     }
-
+    
+    //<!-- insert this snippet where you want Aladin Lite viewer to appear -->
+</script>
+<div id="aladin-lite-div" style="width:400px;height:400px;"></div>
+<script type="text/javascript" src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.js" charset="utf-8"></script>
+<script type="text/javascript">
+    let aladin;
+    A.init.then(() => {
+        aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:60});
+    });
+</script>
+<script>
     function plot(all_data) {
         const data = all_data.plot
         if (data === null) return
