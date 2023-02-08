@@ -37,6 +37,7 @@ def process_table(file_name, result_map: dict):
             'rcsed': no_nan(data.get('rcsed')),
             'page.html': no_nan(data.get('page.html')),
             'page_all_fit': no_nan(data.get('page_all_fit')),
+            'redshift': no_nan(data.get('redshift')),
         },
         images=[url for url in images_all if url],
     )

@@ -96,6 +96,10 @@
                     <div class="div-table-col">object coordinates</div>
                 </div>
                 <div class="div-table-row">
+                    <div class="div-table-col">redshift</div>
+                    <div class="div-table-col">redshift from lowmass_allxray_2812.fits</div>
+                </div>
+                <div class="div-table-row">
                     <div class="div-table-col">MBH_SDSS</div>
                     <div class="div-table-col">Black Hole Mass from 'lowmass_allxray_2812.fits'</div>
                 </div>
@@ -355,7 +359,7 @@
         for (const [param, value] of Object.entries(data.params)) {
             if (!value) continue
             let col_value = value
-            if (param === 'Statistics' || param === 'source') {
+            if (param === 'Statistics' || param === 'source' || param === 'MBH_SDSS' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT') {
                 col_value = Object.values(value).map(stat => `<li>${stat}</li>`).reduce(
                     (a, b) => a + b, '',
                 )
@@ -364,11 +368,11 @@
             if (param === 'rcsed' || param === 'page.html' || param === 'page_all_fit') {
                 col_value = `<a href="${value}">${value}</a>`
             }
-            if (param === 'L_X'|| param === 'MBH_SDSS' || param === 'MBH_ESI' || param === 'MBH_MagE' || param === 'MBH_SALT' || param === 'NH') {
+            if (param === 'L_X' || param === 'NH') {
                 col_value = show_exp(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
             }//rounding to exponential form of number
-            if (param === 'Gamma') {
+            if (param === 'Gamma' || param === 'redshift') {
                 col_value = show_fix(value)
                 col_value = `<ol class="params_list">${col_value}</ol>`
             }//rounding to fixed number after point 
