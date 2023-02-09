@@ -156,7 +156,7 @@
 <script>
 
     const HOST = '/api'
-    // const HOST = 'http://localhost:7001/api'
+    //const HOST = 'http://localhost:7001/api'
 
     let NAMES = []
 
@@ -249,7 +249,8 @@
             name: 'o after',
         }
 
-        const layout_atlas = {
+        const layout = {
+          grid: {rows: 2,  columns: 1, pattern: 'independent'}
           title: {
             text:'ATLAS',
             font: {
@@ -272,6 +273,35 @@
           yaxis: {
             title: {
               text: 'Flux [mJy]',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            }
+          }
+         title2: {
+            text:'ZTF',
+            font: {
+              family: 'Courier New, monospace',
+              size: 24
+            },
+            xref: 'paper',
+            x: 0.05,
+          },
+          xaxis2: {
+            title: {
+              text: 'MJD',
+              font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+              }
+            },
+          },
+          yaxis2: {
+            title: {
+              text: 'Magnitude',
               font: {
                 family: 'Courier New, monospace',
                 size: 18,
@@ -344,11 +374,11 @@
           }
         }
 
-        const plot_data_atlas = [trace_c, trace_o]
-        const plot_data_ztf = [trace_g, trace_r]
+        //const plot_data_atlas = [trace_c, trace_o]
+        const plot_data = [trace_c, trace_o, trace_g, trace_r]
 
-        Plotly.newPlot('plot', plot_data_atlas, layout_atlas, {scrollZoom: true})
-        Plotly.newPlot('plot', plot_data_ztf, layout_ztf, {scrollZoom: true})
+        //Plotly.newPlot('plot', plot_data_atlas, layout_atlas, {scrollZoom: true})
+        Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
     }
 
     function show_params(data) {
@@ -407,7 +437,7 @@
         show_all_names(filtered_names)
     }
 
-    function showAladin() {
+    function showAladin(data) {
         A.aladin('#aladin-lite-div-1', {survey: "CDS/P/ZTF/DR7/color", fov:1, target: data.ra + " " + data.dec})
         A.aladin('#aladin-lite-div-2', {survey: "CDS/P/ZTF/DR7/r", fov:1, target: data.ra + " " + data.dec});
         A.aladin('#aladin-lite-div-3', {survey: "CDS/P/ZTF/DR7/g", fov:1, target: data.ra + " " + data.dec});
