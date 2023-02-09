@@ -2,7 +2,8 @@ import json
 
 import requests
 
-HOST = 'http://lc-dev.voxastro.org'#'http://localhost:7001'
+HOST = 'http://lc-dev.voxastro.org'
+# HOST = 'http://localhost:7001'
 BATCH_SIZE = 100
 
 

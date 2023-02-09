@@ -18,7 +18,6 @@ def process_table(file_name, result_map: dict):
         data = json.load(f)
 
     images_all = data.get('ESIfull') + data.get('MagEfull') + data.get('SALTfull')+ data.get('SALTnonp') + data.get('ESInonp') + data.get('MagEnonp')
-    images_all.append(data.get('cutout'))
     result_map[data['name']] = dict(
         name=data['name'],
         params={
@@ -40,6 +39,7 @@ def process_table(file_name, result_map: dict):
             'redshift': no_nan(data.get('redshift')),
         },
         images=[url for url in images_all if url],
+        image_cutout=data.get('cutout'),
     )
 
 

@@ -31,6 +31,20 @@ body {
     margin-left: 25%;
 }
 
+.cutout {
+    width: 380px;
+    display: inline-block;
+    padding: 10px;
+    vertical-align: top
+}
+
+.not_cutout {
+    width: calc(100% - 420px);
+    display: inline-block;
+    padding: 10px;
+    vertical-align: top
+}
+
 .left_side_fixed_height {
     flex: 0 1 auto;
 }
@@ -167,6 +181,7 @@ h3 {
     background-image: url('searchicon.png');
     background-position: 10px 8px;
     background-repeat: no-repeat;
+    width: auto;
 }
 
 #name_input:focus {

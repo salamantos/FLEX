@@ -34,5 +34,6 @@ class DataVALC:
     params: Optional[dict] = None
     images: Optional[List[str]] = None
     plot: Optional[dict] = None
+    image_cutout: Optional[str] = None
 
     type: str = 'VALC'
