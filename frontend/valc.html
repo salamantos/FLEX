@@ -23,7 +23,7 @@
                 FULU
             </a><a class="logo_header logo_header_active" href="valc.html">
             VALC
-            <img src="Vector.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="Logo.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </a>
         </div>
         <div class="info">
@@ -38,18 +38,21 @@
         <div id="data">
             <h2 id="name_header"></h2>
             <div class="cutout">
+                <h2>ZTF/DR7/color </h2>
                 <div id="aladin-lite-div-1" style="width:380px;height:380px;"></div>
+                <h2>ZTF/DR7/r </h2>
                 <div id="aladin-lite-div-2" style="width:380px;height:380px;"></div>
+                <h2>ZTF/DR7/g </h2>
                 <div id="aladin-lite-div-3" style="width:380px;height:380px;"></div>
             </div><div class="not_cutout">
-                <div id="plot"></div>
+                <div id="plot" style="width: 800px; height: 820px;"></div>
                 <div id="params" class="div-table"></div>
                 <div id="images"></div>
             </div>
         </div>
 
         <div id="description">
-            <h2>VALC <img src="Vector.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></h2>
+            <h2>VALC <img src="Logo.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></h2>
             
             <p>
                 VALC is Python package, which is devoted to post-processing of
@@ -216,9 +219,9 @@
         if (data === null) {
             document.getElementById('plot').innerHTML = null
             return
-        }
+        };
 
-        const trace_c = {
+        const trace_c_after = {
           x: data.MJD_after_c,
           y: data.flux_after_c,
             error_y: {
@@ -228,13 +231,13 @@
             },
             marker: {
                 color: "rgba(0,0,255,0.3)",
-                size: 4
+                size: 5
             },
           mode: 'markers',
           type: 'scatter',
             name: 'c after',
-        }
-        const trace_o = {
+        };
+        const trace_o_after = {
           x: data.MJD_after_o,
           y: data.flux_after_o,
             error_y: {
@@ -244,17 +247,122 @@
             },
             marker: {
                 color: "rgba(255,165,0,0.3)",
-                size: 4
+                size: 5
             },
           mode: 'markers',
           type: 'scatter',
             name: 'o after',
-        }
+        };
+        const trace_c_before = {
+          x: data.MJD_before_c,
+          y: data.flux_before_c,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_c,
+              visible: true
+            },
+            marker: {
+                color: "rgba(30, 30, 155,0.3)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'c before',
+        };
+        const trace_o_before = {
+          x: data.MJD_before_o,
+          y: data.flux_before_o,
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_o,
+              visible: true
+            },
+            marker: {
+                color: "rgba(255,125,50,0.3)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'o before',
+        };
+        const trace_g_after = {
+          x: data.MJD_after_g,
+          y: data.flux_after_g,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_after_g,
+              visible: true
+            },
+            marker: {
+                color: "rgba( 39, 174, 96 ,0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'g after',
+        };
+        const trace_r_after = {
+          x: data.MJD_after_r,
+          y: data.flux_after_r,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_after_r,
+              visible: true
+            },
+            marker: {
+                color: "rgba( 236, 112, 99 ,0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'r after',
+        };
+        const trace_g_before = {
+          x: data.MJD_before_g,
+          y: data.flux_before_g,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_g,
+              visible: true
+            },
+            marker: {
+                color: "rgba(39, 130, 96, 0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'g before',
+        };
+        const trace_r_before = {
+          x: data.MJD_before_r,
+          y: data.flux_before_r,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_r,
+              visible: true
+            },
+            marker: {
+                color: "rgba(230, 60, 90, 0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'r before',
 
+        };
+        const plot_data = [trace_c_after, trace_o_after, trace_c_before, trace_o_before, trace_g_after, trace_r_after, trace_g_before, trace_r_before];
         const layout = {
           grid: {rows: 2,  columns: 1, pattern: 'independent'},
           title: {
-            text: 'ATLAS',
+            text: 'Forced Photometry light curves',
             font: {
               family: 'Courier New, monospace',
               size: 24
@@ -267,7 +375,7 @@
               text: 'MJD',
               font: {
                 family: 'Courier New, monospace',
-                size: 18,
+                size: 20,
                 color: '#7f7f7f'
               }
             },
@@ -277,26 +385,26 @@
               text: 'Flux [mJy]',
               font: {
                 family: 'Courier New, monospace',
-                size: 18,
+                size: 20,
                 color: '#7f7f7f'
               }
             }
           },
-         title2: {
-            text:'ZTF',
-            font: {
-              family: 'Courier New, monospace',
-              size: 24
-            },
-            xref: 'paper',
-            x: 0.05,
-          },
+         //title2: {
+            //text:'ZTF',
+            //font: {
+              //family: 'Courier New, monospace',
+              //size: 24
+            //},
+            //xref: 'paper',
+            //x: 0.05,
+          //},
           xaxis2: {
             title: {
               text: 'MJD',
               font: {
                 family: 'Courier New, monospace',
-                size: 18,
+                size: 20,
                 color: '#7f7f7f'
               }
             },
@@ -306,44 +414,40 @@
               text: 'Magnitude',
               font: {
                 family: 'Courier New, monospace',
-                size: 18,
+                size: 20,
                 color: '#7f7f7f'
               }
             }
-          }
-        }
-        const trace_g = {
-          x: data.MJD_after_g,
-          y: data.flux_after_g,
-            error_y: {
-              type: 'data',
-              array: data.flux_err_after_g,
-              visible: true
-            },
-            marker: {
-                color: "rgba( 39, 174, 96 ,0.5)",
-                size: 4
-            },
-          mode: 'markers',
-          type: 'scatter',
-            name: 'g after',
-        }
-        const trace_r = {
-          x: data.MJD_after_r,
-          y: data.flux_after_r,
-            error_y: {
-              type: 'data',
-              array: data.flux_err_after_r,
-              visible: true
-            },
-            marker: {
-                color: "rgba( 236, 112, 99 ,0.5)",
-                size: 4
-            },
-          mode: 'markers',
-          type: 'scatter',
-            name: 'r after',
-        }
+          },
+          annotations: [{
+            text: "ATLAS",
+              font: {
+                family: 'Courier New, monospace',
+                size: 24,
+              },
+            showarrow: false,
+            align: 'center',
+            x: 0.5,
+            y: 1.03,
+            xref: 'paper',
+            yref: 'paper',
+          },
+            {
+                text: "ZTF",
+              font: {
+                family: 'Courier New, monospace',
+                size: 24,
+              },
+            showarrow: false,
+            align: 'center',
+            x: 0.5,
+            y: 0.43,
+            xref: 'paper',
+            yref: 'paper',
+            }
+          ]
+        };
+
         //const layout_ztf = {
           //title: {
             //text:'ZTF',
@@ -377,7 +481,7 @@
         //}
 
         //const plot_data_atlas = [trace_c, trace_o]
-        const plot_data = [trace_c, trace_o, trace_g, trace_r]
+        //const plot_data = [trace_c_after, trace_o_after, trace_g_after, trace_r_after, trace_c_before, trace_o_before, trace_g_before, trace_r_before]
 
         //Plotly.newPlot('plot', plot_data_atlas, layout_atlas, {scrollZoom: true})
         Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
