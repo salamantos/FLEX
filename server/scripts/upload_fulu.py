@@ -3,6 +3,7 @@ import json
 import requests
 
 HOST = 'http://lc-dev.voxastro.org'
+#HOST = 'http://localhost:7001'
 ALGOS = {
     'GP': {
         'suffix': 'GP',

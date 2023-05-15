@@ -23,6 +23,7 @@
                 FULU
             </a><a class="logo_header logo_header_active" href="valc.html">
             VALC
+            <img src="Vector.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         </a>
         </div>
         <div class="info">
@@ -48,7 +49,8 @@
         </div>
 
         <div id="description">
-            <h2>VALC</h2>
+            <h2>VALC <img src="Vector.svg" alt="VALC logo" style="width: 50px; height: auto;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></h2>
+            
             <p>
                 VALC is Python package, which is devoted to post-processing of
                 ZTF Forced
@@ -91,7 +93,7 @@
             <h3>Parameters:</h3>
             <div class="div-table">
                 <div class="div-table-row">
-                    <div class="div-table-col">name</div>
+                    <div class="div-table-col">Name</div>
                     <div class="div-table-col">name of the object</div>
                 </div>
                 <div class="div-table-row">
@@ -418,7 +420,7 @@
         }
         document.getElementById('images').innerHTML = innerHTML
 
-        showAladin()
+        showAladin(data)
     }
 
     function onNameClick(name) {
@@ -438,9 +440,15 @@
     }
 
     function showAladin(data) {
-        A.aladin('#aladin-lite-div-1', {survey: "CDS/P/ZTF/DR7/color", fov:1, target: data.ra + " " + data.dec})
-        A.aladin('#aladin-lite-div-2', {survey: "CDS/P/ZTF/DR7/r", fov:1, target: data.ra + " " + data.dec});
-        A.aladin('#aladin-lite-div-3', {survey: "CDS/P/ZTF/DR7/g", fov:1, target: data.ra + " " + data.dec});
+        //console.log(data);
+        const coords = `${Number(data.params.ra)} ${Number(data.params.dec)}`;
+        //console.log(coords);
+        //const coords = String(data.params.ra) + ' ' + String(data.params.dec);
+        //const coords  = data.params.ra + ' ' + data.params.dec;
+        //console.log(coords);
+        A.aladin('#aladin-lite-div-1', {survey: "CDS/P/ZTF/DR7/color", fov:0.1, target: coords});
+        A.aladin('#aladin-lite-div-2', {survey: "CDS/P/ZTF/DR7/r", fov:0.1, target: coords});
+        A.aladin('#aladin-lite-div-3', {survey: "CDS/P/ZTF/DR7/g", fov:0.1, target: coords});
     }
 
     let name_input = document.getElementById('name_input')
