@@ -45,7 +45,8 @@
                 <h2>ZTF/DR7/g </h2>
                 <div id="aladin-lite-div-3" style="width:380px;height:380px;"></div>
             </div><div class="not_cutout">
-                <div id="plot" style="width: 800px; height: 820px;"></div>
+                <div id="plot1" style="width: 800px; height: 410px;"></div>
+                <div id="plot2" style="width: 800px; height: 410px;"></div>
                 <div id="params" class="div-table"></div>
                 <div id="images"></div>
             </div>
@@ -217,9 +218,12 @@
     function plot(all_data) {
         const data = all_data.plot
         if (data === null) {
-            document.getElementById('plot').innerHTML = null
+            document.getElementById('plot1').innerHTML = null
+            document.getElementById('plot2').innerHTML = null;
             return
         };
+        
+        
 
         const trace_c_after = {
           x: data.MJD_after_c,
@@ -358,9 +362,9 @@
             name: 'r before',
 
         };
-        const plot_data = [trace_c_after, trace_o_after, trace_c_before, trace_o_before, trace_g_after, trace_r_after, trace_g_before, trace_r_before];
-        const layout = {
-          grid: {rows: 2,  columns: 1, pattern: 'independent'},
+        const plot_data1 = [trace_c_after, trace_o_after, trace_c_before, trace_o_before];
+        const layout1 = {
+          grid: {rows: 1,  columns: 1, pattern: 'independent'},
           title: {
             text: 'Forced Photometry light curves',
             font: {
@@ -381,6 +385,7 @@
             },
           },
           yaxis: {
+          
             title: {
               text: 'Flux [mJy]',
               font: {
@@ -399,7 +404,45 @@
             //xref: 'paper',
             //x: 0.05,
           //},
-          xaxis2: {
+          annotations: [{
+            text: "ATLAS",
+              font: {
+                family: 'Courier New, monospace',
+                size: 24,
+              },
+            showarrow: false,
+            align: 'center',
+            x: 0.5,
+            y: 1.18,
+            xref: 'paper',
+            yref: 'paper',
+          }
+          ]
+        };
+
+
+        const plot_data2 = [trace_g_after, trace_r_after, trace_g_before, trace_r_before];
+        const layout2 = {
+          grid: {rows: 1,  columns: 1, pattern: 'independent'},
+          //title: {
+            //text: '',
+            //font: {
+              //family: 'Courier New, monospace',
+              //size: 24
+            //},
+            //xref: 'paper',
+            //x: 0.05,
+          //},
+         //title2: {
+            //text:'ZTF',
+            //font: {
+              //family: 'Courier New, monospace',
+              //size: 24
+            //},
+            //xref: 'paper',
+            //x: 0.05,
+          //},
+          xaxis: {
             title: {
               text: 'MJD',
               font: {
@@ -417,10 +460,11 @@
                 size: 20,
                 color: '#7f7f7f'
               }
-            }
+            },
+            autorange: 'reversed',
           },
           annotations: [{
-            text: "ATLAS",
+            text: "ZTF",
               font: {
                 family: 'Courier New, monospace',
                 size: 24,
@@ -428,26 +472,12 @@
             showarrow: false,
             align: 'center',
             x: 0.5,
-            y: 1.03,
-            xref: 'paper',
-            yref: 'paper',
-          },
-            {
-                text: "ZTF",
-              font: {
-                family: 'Courier New, monospace',
-                size: 24,
-              },
-            showarrow: false,
-            align: 'center',
-            x: 0.5,
-            y: 0.43,
+            y: 1.23,
             xref: 'paper',
             yref: 'paper',
             }
           ]
         };
-
         //const layout_ztf = {
           //title: {
             //text:'ZTF',
@@ -484,7 +514,8 @@
         //const plot_data = [trace_c_after, trace_o_after, trace_g_after, trace_r_after, trace_c_before, trace_o_before, trace_g_before, trace_r_before]
 
         //Plotly.newPlot('plot', plot_data_atlas, layout_atlas, {scrollZoom: true})
-        Plotly.newPlot('plot', plot_data, layout, {scrollZoom: true})
+        Plotly.newPlot('plot1', plot_data1, layout1, {scrollZoom: true})
+        Plotly.newPlot('plot2', plot_data2, layout2, {scrollZoom: true})
     }
 
     function show_params(data) {
