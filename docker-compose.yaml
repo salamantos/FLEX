@@ -44,5 +44,4 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: RucKwFpYFAQmrO4mWwth
       ME_CONFIG_MONGODB_URL: mongodb://salamantos:RucKwFpYFAQmrO4mWwth@flex_mongo:27017/
 
-volumes:
-  - /var/www/light_curves/db:/data/db
+
