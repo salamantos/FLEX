@@ -307,6 +307,28 @@
           type: 'scatter',
             name: 'g after',
         };
+        
+        
+        const trace_i_after = {
+          x: data.MJD_after_i,
+          y: data.flux_after_i,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_after_i,
+              visible: true
+            },
+            marker: {
+                color: "rgba( 236, 90, 250 ,0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'i after',
+        };
+        
+        
         const trace_r_after = {
           x: data.MJD_after_r,
           y: data.flux_after_r,
@@ -343,6 +365,27 @@
           type: 'scatter',
             name: 'g before',
         };
+        
+        const trace_i_before = {
+          x: data.MJD_before_i,
+          y: data.flux_before_i,
+            xaxis: 'x2',
+            yaxis: 'y2',
+            error_y: {
+              type: 'data',
+              array: data.flux_err_before_i,
+              visible: true
+            },
+            marker: {
+                color: "rgba(230, 60, 170, 0.5)",
+                size: 5
+            },
+          mode: 'markers',
+          type: 'scatter',
+            name: 'i before',
+        };
+        
+        
         const trace_r_before = {
           x: data.MJD_before_r,
           y: data.flux_before_r,
@@ -421,7 +464,7 @@
         };
 
 
-        const plot_data2 = [trace_g_after, trace_r_after, trace_g_before, trace_r_before];
+        const plot_data2 = [trace_g_after, trace_r_after,trace_i_after, trace_g_before, trace_r_before,trace_i_before];
         const layout2 = {
           grid: {rows: 1,  columns: 1, pattern: 'independent'},
           //title: {

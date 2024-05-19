@@ -99,6 +99,8 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_err_after_o=ATLAS['flux_err_after_o'],    
 
 
+
+
             flux_before_r=data['flux_before_r'],
             MJD_before_r=data['MJD_before_r'],
             flux_err_before_r=data['flux_err_before_r'],
@@ -106,11 +108,21 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_before_g=data['flux_before_g'],
             MJD_before_g=data['MJD_before_g'],
             flux_err_before_g=data['flux_err_before_g'],
+            
+            flux_before_i=data['flux_before_i'],
+            MJD_before_i=data['MJD_before_i'],
+            flux_err_before_i=data['flux_err_before_i'],
+            
+                        
+            
 
             mask_before_r=data['mask_before_r'],#these fields show for each flux point which part of detector (qid) from 0 to 63, we need to plot each number with different markers or colors or  edge (0 - boxes,1- circles,  and so on),and plot in legend 
             mask_after_r=data['mask_after_r'],
             mask_before_g=data['mask_before_g'],
             mask_after_g=data['mask_after_g'],
+            mask_before_i=data['mask_before_i'],
+            mask_after_i=data['mask_after_i'],
+
 
             flux_after_r=data['flux_after_r'],
             MJD_after_r=data['MJD_after_r'],
@@ -120,6 +132,12 @@ def process_plot_ztf(file_name, result_map: dict):
             MJD_after_g=data['MJD_after_g'],
             flux_err_after_g=data['flux_err_after_g'],
 
+            flux_after_i=data['flux_after_i'],
+            MJD_after_i=data['MJD_after_i'],
+            flux_err_after_i=data['flux_err_after_i'],
+
+
+
             flux_outl_r=data['flux_outl_after_r'],#these fields plot as black stars with color edge as color of filter (r or g)
             MJD_outl_r=data['MJD_outl_after_r'],
             flux_err_outl_r=data['flux_outl_err_after_r'],
@@ -127,6 +145,10 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_outl_g=data['flux_outl_after_g'],
             MJD_outl_g=data['MJD_outl_after_g'],
             flux_err_outl_g=data['flux_outl_err_after_g'],
+
+            flux_outl_i=data['flux_outl_after_i'],
+            MJD_outl_i=data['MJD_outl_after_i'],
+            flux_err_outl_i=data['flux_outl_err_after_i'],
         )
     except:
         result_map[data['name']]['plot'] = dict(
@@ -137,11 +159,18 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_before_g=data['flux_before_g'],
             MJD_before_g=data['MJD_before_g'],
             flux_err_before_g=data['flux_err_before_g'],
+            
+            flux_before_i=data['flux_before_i'],
+            MJD_before_i=data['MJD_before_i'],
+            flux_err_before_i=data['flux_err_before_i'],
 
             mask_before_r=data['mask_before_r'],#these fields show for each flux point which part of detector (qid) from 0 to 63, we need to plot each number with different markers or colors or  edge (0 - boxes,1- circles,  and so on),and plot in legend 
             mask_after_r=data['mask_after_r'],
             mask_before_g=data['mask_before_g'],
             mask_after_g=data['mask_after_g'],
+            mask_before_i=data['mask_before_i'],
+            mask_after_i=data['mask_after_i'],
+
 
             flux_after_r=data['flux_after_r'],
             MJD_after_r=data['MJD_after_r'],
@@ -150,6 +179,10 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_after_g=data['flux_after_g'],
             MJD_after_g=data['MJD_after_g'],
             flux_err_after_g=data['flux_err_after_g'],
+            
+            flux_after_i=data['flux_after_i'],
+            MJD_after_i=data['MJD_after_i'],
+            flux_err_after_i=data['flux_err_after_i'],
 
             flux_outl_r=data['flux_outl_after_r'],#these fields plot as black stars with color edge as color of filter (r or g)
             MJD_outl_r=data['MJD_outl_after_r'],
@@ -158,6 +191,10 @@ def process_plot_ztf(file_name, result_map: dict):
             flux_outl_g=data['flux_outl_after_g'],
             MJD_outl_g=data['MJD_outl_after_g'],
             flux_err_outl_g=data['flux_outl_err_after_g'],
+            
+            flux_outl_i=data['flux_outl_after_i'],
+            MJD_outl_i=data['MJD_outl_after_i'],
+            flux_err_outl_i=data['flux_outl_err_after_i'],
         )
 
 
