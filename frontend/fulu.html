@@ -134,9 +134,14 @@
     function save_response_names(names) {
         NAMES = names
         show_all_names(names)
-        // if (names.length > 0) {
-        //     onNameClick(names[0])
-        // }
+        
+        const queryString = window.location.search
+        const urlParams = new URLSearchParams(queryString)
+        const selected_object = urlParams.get('object')
+
+        if (selected_object !== null) {
+            showObject(selected_object)
+        }
     }
 
     function plot(data) {
@@ -300,7 +305,7 @@
         document.getElementById('peak_info').innerHTML = innerHTML
     }
 
-    function onNameClick(name) {
+    function showObject(name) {
         document.getElementById('name_header').textContent = name
         request(`${HOST}/data/FULU/${name}`, data => {
             plot(data)
@@ -308,6 +313,14 @@
         })
         document.getElementById('description').style.display = 'none'
         document.getElementById('data').style.display = 'block'
+    }
+
+    function onNameClick(name) {
+        showObject(name)
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('object', name);
+        window.location.search = urlParams;
     }
 
     function onSearch(pattern) {

@@ -213,6 +213,14 @@
     function save_response_names(names) {
         NAMES = names
         show_all_names(names)
+        
+        const queryString = window.location.search
+        const urlParams = new URLSearchParams(queryString)
+        const selected_object = urlParams.get('object')
+
+        if (selected_object !== null) {
+            showObject(selected_object)
+        }
     }
 
     function plot(all_data) {
@@ -601,7 +609,7 @@
         showAladin(data)
     }
 
-    function onNameClick(name) {
+    function showObject(name) {
         document.getElementById('name_header').textContent = name
         request(`${HOST}/data/VALC/${name}`, data => {
             plot(data)
@@ -610,6 +618,14 @@
         })
         document.getElementById('description').style.display = 'none'
         document.getElementById('data').style.display = 'block'
+    }
+
+    function onNameClick(name) {
+        showObject(name)
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('object', name);
+        window.location.search = urlParams;
     }
 
     function onSearch(pattern) {
