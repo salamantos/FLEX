@@ -40,10 +40,6 @@
             <div class="cutout">
                 <h2>ZTF/DR7/color </h2>
                 <div id="aladin-lite-div-1" style="width:380px;height:380px;"></div>
-                <h2>ZTF/DR7/r </h2>
-                <div id="aladin-lite-div-2" style="width:380px;height:380px;"></div>
-                <h2>ZTF/DR7/g </h2>
-                <div id="aladin-lite-div-3" style="width:380px;height:380px;"></div>
             </div><div class="not_cutout">
                 <div id="plot1" style="width: 800px; height: 410px;"></div>
                 <div id="plot2" style="width: 800px; height: 410px;"></div>
@@ -634,15 +630,8 @@
     }
 
     function showAladin(data) {
-        //console.log(data);
         const coords = `${Number(data.params.ra)} ${Number(data.params.dec)}`;
-        //console.log(coords);
-        //const coords = String(data.params.ra) + ' ' + String(data.params.dec);
-        //const coords  = data.params.ra + ' ' + data.params.dec;
-        //console.log(coords);
         A.aladin('#aladin-lite-div-1', {survey: "CDS/P/ZTF/DR7/color", fov:0.1, target: coords});
-        A.aladin('#aladin-lite-div-2', {survey: "CDS/P/ZTF/DR7/r", fov:0.1, target: coords});
-        A.aladin('#aladin-lite-div-3', {survey: "CDS/P/ZTF/DR7/g", fov:0.1, target: coords});
     }
 
     let name_input = document.getElementById('name_input')
