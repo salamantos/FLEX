@@ -31,17 +31,17 @@ services:
     volumes:
       - /var/www/light_curves/db:/data/db
 
-  flex_mongo-express:
-    container_name: flex_mongo_express
-    image: mongo-express
-    restart: always
-    depends_on:
-      - flex_mongo
-    ports:
-      - 7081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: salamantos
-      ME_CONFIG_MONGODB_ADMINPASSWORD: RucKwFpYFAQmrO4mWwth
-      ME_CONFIG_MONGODB_URL: mongodb://salamantos:RucKwFpYFAQmrO4mWwth@flex_mongo:27017/
+  # flex_mongo-express:
+  #   container_name: flex_mongo_express
+  #   image: mongo-express
+  #   restart: always
+  #   depends_on:
+  #     - flex_mongo
+  #   ports:
+  #     - 7081:8081
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: salamantos
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: RucKwFpYFAQmrO4mWwth
+  #     ME_CONFIG_MONGODB_URL: mongodb://salamantos:RucKwFpYFAQmrO4mWwth@flex_mongo:27017/
 
 
