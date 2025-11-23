@@ -21,3 +21,19 @@ export async function getVALCData(name: string): Promise<DataVALC> {
     return data;
 }
 
+/**
+ * Fetches list of all VALC object names
+ * @returns Promise resolving to array of object names
+ * @throws Error if the request fails
+ */
+export async function getVALCObjectNames(): Promise<string[]> {
+    const response = await fetch(`${HOST}/names-valc/`);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch object names: ${response.statusText}`);
+    }
+
+    const data: string[] = await response.json();
+    return data;
+}
+

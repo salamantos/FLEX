@@ -6,6 +6,8 @@ import { AboutDialog } from './components/AboutDialog';
 import { AdvancedSearch } from './components/AdvancedSearch';
 import { Aladin } from './components/Aladin';
 import { ObjectImages } from './components/ObjectImages';
+import { AboutContent } from './components/AboutContent';
+import { RandomObjects } from './components/RandomObjects';
 import { getVALCData } from './api/valc';
 import { DataVALC } from './types/api';
 
@@ -133,8 +135,14 @@ export default function App() {
                         </div>
                     </div>
                 ) : (
-                    <div className="text-center py-12">
-                        <p className="text-slate-500">Enter object name in the search field to load data</p>
+                    <div className="grid grid-cols-[1fr_400px] gap-6">
+                        <div className="bg-white rounded-lg border border-slate-200 p-6 max-h-[calc(100vh-12rem)] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-slate-400"
+                            style={{ scrollbarColor: '#cbd5e1 #f1f5f9', scrollbarWidth: 'thin' }}>
+                            <AboutContent variant="light" />
+                        </div>
+                        <div>
+                            <RandomObjects onSelectObject={handleSearch} />
+                        </div>
                     </div>
                 )}
             </main>
