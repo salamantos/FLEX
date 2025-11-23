@@ -1,14 +1,13 @@
-import { StarObject, starObjects } from '../App';
 import { ObjectSearch } from './ObjectSearch';
 
 interface HeaderProps {
-  selectedObject: StarObject;
-  onObjectSelect: (object: StarObject) => void;
+  onSearch: (objectName: string) => void;
   onAboutClick: () => void;
   onAdvancedSearchClick: () => void;
+  isLoading?: boolean;
 }
 
-export function Header({ selectedObject, onObjectSelect, onAboutClick, onAdvancedSearchClick }: HeaderProps) {
+export function Header({ onSearch, onAboutClick, onAdvancedSearchClick, isLoading = false }: HeaderProps) {
   return (
     <header className="border-b border-slate-800 bg-slate-900">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -33,10 +32,9 @@ export function Header({ selectedObject, onObjectSelect, onAboutClick, onAdvance
         </div>
 
         <ObjectSearch
-          objects={starObjects}
-          selectedObject={selectedObject}
-          onSelectObject={onObjectSelect}
+          onSearch={onSearch}
           onAdvancedSearchClick={onAdvancedSearchClick}
+          isLoading={isLoading}
         />
       </div>
     </header>

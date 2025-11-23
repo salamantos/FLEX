@@ -9,7 +9,7 @@ import { ObjectImages } from './components/ObjectImages';
 import { getVALCData } from './api/valc';
 import { DataVALC } from './types/api';
 
-// Mock star object data
+// Mock star object data (kept for AdvancedSearch if needed)
 export interface StarObject {
     id: string;
     name: string;
@@ -38,44 +38,82 @@ export const starObjects: StarObject[] = [
 ];
 
 export default function App() {
-    const [selectedObject, setSelectedObject] = useState<StarObject>(starObjects[0]);
     const [isAboutOpen, setIsAboutOpen] = useState(false);
     const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
     const [objectData, setObjectData] = useState<DataVALC | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
+    const loadObjectData = async (objectName: string) => {
+        setIsLoading(true);
+        setError(null);
+        setObjectData(null);
+
+        try {
+            const data = await getVALCData(objectName);
+            console.log('VALC data loaded:', data);
+            setObjectData(data);
+        } catch (err) {
+            console.error('Error loading VALC data:', err);
+            setError(err instanceof Error ? err.message : 'Failed to load object data');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleSearch = async (objectName: string) => {
+        // Update URL with object parameter
+        const url = new URL(window.location.href);
+        url.searchParams.set('object', objectName);
+        window.history.pushState({}, '', url.toString());
+
+        await loadObjectData(objectName);
+    };
+
+    // Load object from URL on mount
     useEffect(() => {
-        getVALCData('ESI_J125710.76+272417.6')
-            .then(data => {
-                console.log('VALC data loaded:', data);
-                setObjectData(data);
-            })
-            .catch(error => {
-                console.error('Error loading VALC data:', error);
-            });
+        const urlParams = new URLSearchParams(window.location.search);
+        const objectParam = urlParams.get('object');
+        
+        if (objectParam) {
+            loadObjectData(objectParam);
+        }
     }, []);
 
     return (
         <div className="min-h-screen bg-slate-50">
             <Header
-                selectedObject={selectedObject}
-                onObjectSelect={setSelectedObject}
+                onSearch={handleSearch}
                 onAboutClick={() => setIsAboutOpen(true)}
                 onAdvancedSearchClick={() => setIsAdvancedSearchOpen(!isAdvancedSearchOpen)}
+                isLoading={isLoading}
             />
 
             {isAdvancedSearchOpen && (
                 <AdvancedSearch
                     objects={starObjects}
-                    onSelectObject={setSelectedObject}
+                    onSelectObject={(object) => handleSearch(object.name)}
                 />
             )}
 
             <main className="container mx-auto px-6 py-8">
-                <div className="mb-8">
-                    <h1 className="text-slate-900 mb-2">{objectData?.name}</h1>
-                </div>
+                {error && (
+                    <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                        {error}
+                    </div>
+                )}
 
-                {objectData ? (
+                {objectData && (
+                    <div className="mb-8">
+                        <h1 className="text-slate-900 mb-2">{objectData.name}</h1>
+                    </div>
+                )}
+
+                {isLoading ? (
+                    <div className="text-center py-12">
+                        <p className="text-slate-500">Loading data...</p>
+                    </div>
+                ) : objectData ? (
                     <div className="grid grid-cols-[400px_1fr] gap-6">
                         <div>
                             <h2 className="text-slate-900 mb-4">ZTF/DR7/color</h2>
@@ -95,7 +133,7 @@ export default function App() {
                     </div>
                 ) : (
                     <div className="text-center py-12">
-                        <p className="text-slate-500">Loading data...</p>
+                        <p className="text-slate-500">Enter object name in the search field to load data</p>
                     </div>
                 )}
             </main>

@@ -79,7 +79,7 @@ export function ObjectParameters({ object }: ObjectParametersProps) {
                 </a>
             );
         }
-        else if (param === 'page.html' || param === 'page_all_fit') {
+        else if (param === 'page.html') {
             colValue = (
                 <a href={String(value)} className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
                     {String(value)}
@@ -93,6 +93,11 @@ export function ObjectParameters({ object }: ObjectParametersProps) {
         // Parameters that should be rounded to fixed number
         else if (param === 'Gamma' || param === 'redshift') {
             colValue = <span>{showFix(value)}</span>;
+        }
+        // Parameters that should be ignored
+        else if (param === 'page_all_fit') {
+            // Hide until article release
+            continue;
         }
         // Default: display as string
         else {

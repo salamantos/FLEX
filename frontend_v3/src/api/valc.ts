@@ -8,7 +8,7 @@ import { DataVALC } from '../types/api';
  * @throws Error if the request fails
  */
 export async function getVALCData(name: string): Promise<DataVALC> {
-    const response = await fetch(`${HOST}/data/VALC/${name}`);
+    const response = await fetch(`${HOST}/data/VALC/${name}/`);
 
     if (!response.ok) {
         if (response.status === 404) {
