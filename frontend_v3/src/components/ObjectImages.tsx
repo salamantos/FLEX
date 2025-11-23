@@ -12,7 +12,7 @@ export function ObjectImages({ object }: ObjectImagesProps) {
     }
 
     return <>
-        <h2 className="text-slate-900 mb-4">Spectral Analysis</h2>
+        <h2 className="text-slate-900 mb-4 font-medium">Spectral Analysis</h2>
 
         <div className="grid grid-cols-1 gap-6">
             {images.map((imageUrl, index) => (

@@ -45,13 +45,13 @@ export function ObjectSearch({ onSearch, onAdvancedSearchClick, isLoading = fals
         </Button>
       </div>
       
-      <Button 
+      {/* <Button 
         variant="outline"
         onClick={onAdvancedSearchClick}
         className="bg-slate-800 border-slate-700 text-white hover:bg-slate-700"
       >
         <SlidersHorizontal className="w-4 h-4" />
-      </Button>
+      </Button> */}
     </div>
   );
 }

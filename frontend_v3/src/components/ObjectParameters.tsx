@@ -82,7 +82,7 @@ export function ObjectParameters({ object }: ObjectParametersProps) {
         else if (param === 'page.html') {
             colValue = (
                 <a href={String(value)} className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-                    {String(value)}
+                    link
                 </a>
             );
         }

@@ -12,14 +12,17 @@ export function Header({ onSearch, onAboutClick, onAdvancedSearchClick, isLoadin
     <header className="border-b border-slate-800 bg-slate-900">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <div className="flex items-center gap-2">
+          <a 
+            href="/" 
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer"
+          >
             <img 
               src="/logo.svg" 
               alt="Light curves logo" 
               className="w-10 h-10"
             />
             <span className="text-white text-lg font-semibold">Light curves</span>
-          </div>
+          </a>
           
           <nav className="flex items-center gap-6">
             <button 

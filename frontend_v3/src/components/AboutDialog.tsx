@@ -28,7 +28,7 @@ export function AboutDialog({ open, onOpenChange }: AboutDialogProps) {
                     </div>
                     <DialogDescription className="text-slate-300 space-y-4">
                         <p>
-                            VALC is Python package, which is devoted to post-processing of
+                            VALC (Variability Analyzer for Light Curves) is Python package, which is devoted to post-processing of
                             ZTF Forced Photometry light curves and conducting statistical test to
                             reject the hypothesis of a constant with white noise.
                         </p>

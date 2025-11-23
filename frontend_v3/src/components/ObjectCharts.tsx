@@ -322,7 +322,7 @@ export function ObjectCharts({ object }: ObjectChartsProps) {
     }
 
     return <>
-        <h2 className="text-slate-900 mb-4">Forced Photometry light curves</h2>
+        <h2 className="text-slate-900 mb-4 font-medium">Forced Photometry light curves</h2>
 
         <div className="grid grid-cols-1 gap-6">
 

@@ -105,7 +105,7 @@ export default function App() {
 
                 {objectData && (
                     <div className="mb-8">
-                        <h1 className="text-slate-900 mb-2">{objectData.name}</h1>
+                        <h1 className="text-slate-900 mb-2 text-lg font-bold">{objectData.name}</h1>
                     </div>
                 )}
 
@@ -116,10 +116,10 @@ export default function App() {
                 ) : objectData ? (
                     <div className="grid grid-cols-[400px_1fr] gap-6">
                         <div>
-                            <h2 className="text-slate-900 mb-4">ZTF/DR7/color</h2>
+                            <h2 className="text-slate-900 mb-4 font-medium">ZTF/DR7/color</h2>
                             <Aladin object={objectData} />
 
-                            <h2 className="text-slate-900 mb-4 mt-6">Object Parameters</h2>
+                            <h2 className="text-slate-900 mb-4 mt-6 font-medium">Object Parameters</h2>
                             <ObjectParameters object={objectData} />
                         </div>
 
