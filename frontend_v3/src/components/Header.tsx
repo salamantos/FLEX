@@ -27,10 +27,18 @@ export function Header({ onSearch, onAboutClick, onAdvancedSearchClick, isLoadin
           <nav className="flex items-center gap-6">
             <button 
               onClick={onAboutClick}
-              className="text-slate-300 hover:text-white transition-colors"
+              className="text-slate-300 hover:text-white transition-colors font-medium"
             >
               About
             </button>
+            <a 
+              href="/fulu.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white transition-colors no-underline font-medium"
+            >
+              Fulu library
+            </a>
           </nav>
         </div>
 
