@@ -11,7 +11,9 @@ export function ObjectImages({ object }: ObjectImagesProps) {
         return <></>;
     }
 
-    return (
+    return <>
+        <h2 className="text-slate-900 mb-4">Spectral Analysis</h2>
+
         <div className="grid grid-cols-1 gap-6">
             {images.map((imageUrl, index) => (
                 <div key={index} className="bg-white border border-slate-300 rounded-lg p-6 shadow-sm">
@@ -25,6 +27,6 @@ export function ObjectImages({ object }: ObjectImagesProps) {
                 </div>
             ))}
         </div>
-    );
+    </>
 }
 

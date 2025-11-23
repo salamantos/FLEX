@@ -74,7 +74,7 @@ export default function App() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const objectParam = urlParams.get('object');
-        
+
         if (objectParam) {
             loadObjectData(objectParam);
         }
@@ -124,11 +124,12 @@ export default function App() {
                         </div>
 
                         <div>
-                            <h2 className="text-slate-900 mb-4">Forced Photometry light curves</h2>
-                            <ObjectCharts object={objectData} />
-
-                            <h2 className="text-slate-900 mb-4 mb-4 mt-6">Spectral Analysis</h2>
-                            <ObjectImages object={objectData} />
+                            <div>
+                                <ObjectCharts object={objectData} />
+                            </div>
+                            <div className="mt-6">
+                                <ObjectImages object={objectData} />
+                            </div>
                         </div>
                     </div>
                 ) : (
