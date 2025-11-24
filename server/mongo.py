@@ -52,3 +52,14 @@ async def get_data(
 
 async def get_all_names(type: str = 'FULU') -> List[str]:
     return await get_collection().find({'type': type}).distinct('name')
+
+
+async def search_names(type: str, query: str) -> List[str]:
+    collection = get_collection()
+    # Case-insensitive regex search for names containing the query
+    cursor = collection.find({
+        'type': type,
+        'name': {'$regex': query, '$options': 'i'}
+    })
+    names = await cursor.distinct('name')
+    return sorted(names)

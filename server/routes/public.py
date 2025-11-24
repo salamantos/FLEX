@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 
 from server import models
 from server import mongo
@@ -32,3 +32,12 @@ async def get_all_names() -> List[str]:
 @catch_exceptions
 async def get_all_names() -> List[str]:
     return await mongo.get_all_names('VALC')
+
+
+@router.get('/search')
+@catch_exceptions
+async def search_objects(
+        type: str = Query(..., description='Type of objects to search'),
+        query: str = Query(..., description='Search query string')
+) -> List[str]:
+    return await mongo.search_names(type, query)
