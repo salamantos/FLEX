@@ -8,6 +8,13 @@ services:
     ports:
       - 7080:8080
 
+  flex_frontend_v3:
+    container_name: flex_frontend_v3
+    build: ./frontend_v3
+    restart: always
+    ports:
+      - 7083:8080
+
   flex_server:
     container_name: flex_server
     build:
