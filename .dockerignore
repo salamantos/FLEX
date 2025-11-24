@@ -1,0 +1,2 @@
+# Exclude database directory from build context
+db/
