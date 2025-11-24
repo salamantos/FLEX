@@ -98,7 +98,7 @@ export default function App() {
                 />
             )}
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 md:px-6 py-6 md:py-8">
                 {error && (
                     <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
                         {error}
@@ -116,7 +116,7 @@ export default function App() {
                         <p className="text-slate-500">Loading data...</p>
                     </div>
                 ) : objectData ? (
-                    <div className="grid grid-cols-[400px_1fr] gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-[400px_1fr] gap-6">
                         <div>
                             <h2 className="text-slate-900 mb-4 font-medium">ZTF/DR7/color</h2>
                             <Aladin object={objectData} />
@@ -135,8 +135,8 @@ export default function App() {
                         </div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-[1fr_400px] gap-6">
-                        <div className="bg-white rounded-lg border border-slate-200 p-6 max-h-[calc(100vh-12rem)] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-slate-400"
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_400px] gap-6">
+                        <div className="bg-white rounded-lg border border-slate-200 p-4 md:p-6 max-h-[calc(100vh-12rem)] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-slate-400"
                             style={{ scrollbarColor: '#cbd5e1 #f1f5f9', scrollbarWidth: 'thin' }}>
                             <AboutContent variant="light" />
                         </div>

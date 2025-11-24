@@ -94,59 +94,59 @@ export function AboutContent({ variant = 'dark' }: AboutContentProps) {
                 <h3 className={`mb-3 font-semibold ${isLight ? 'text-slate-900' : 'text-white'}`}>Parameters:</h3>
                 <div className={`border rounded-lg overflow-hidden ${isLight ? 'border-slate-300' : 'border-slate-700'}`}>
                     <div className={`divide-y ${isLight ? 'divide-slate-200' : 'divide-slate-700'}`}>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>Name</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>name of the object</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>Statistics</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>comments about X-ray data lowmass_allxray_1908.fits</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>ra, dec</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>object coordinates</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>redshift</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>redshift from lowmass_allxray_2812.fits</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>MBH_SDSS</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>Black Hole Mass from 'lowmass_allxray_2812.fits' in M☉</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>MBH_MagE</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>Black Hole Mass from '/data1/IMBH/MagE/results_emis_fit2d.fits' in M☉</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>MBH_ESI</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>Black Hole Mass from '/data1/IMBH/ESI/results_emis_fit2d.fits' in M☉</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>MBH_SALT</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>Black Hole Mass from '/data1/IMBH/SALT/results_emis_fit2d.fits' in M☉</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>L_X; NH; Gamma</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>luminosity and parameters of the X-ray data</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>source</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>source of the X-ray data</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>rcsed</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>search in rcsed2</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>page_all_fit</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>page with all files of 2D spectra fit</div>
                         </div>
-                        <div className={`grid grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
+                        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-3 ${isLight ? 'bg-slate-50' : 'bg-slate-800/50'}`}>
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>page.html</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>page with X-ray data</div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 p-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3">
                             <div className={`font-semibold ${isLight ? 'text-slate-900' : 'text-slate-200'}`}>Table from</div>
                             <div className={isLight ? 'text-slate-700' : 'text-slate-300'}>
                                 table from which the information is taken:<br />
