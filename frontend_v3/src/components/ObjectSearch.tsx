@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Search, SlidersHorizontal } from 'lucide-react';
-import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { searchObjects } from '../api/valc';
 
@@ -88,8 +87,9 @@ export function ObjectSearch({ onSearch, onAdvancedSearchClick, isLoading = fals
 
   return (
     <div className="flex items-center gap-2 w-full md:w-auto relative" ref={containerRef}>
-      <div className="flex items-center gap-2 flex-1 md:flex-initial relative">
-        <div className="relative w-full md:w-80">
+      <div className="relative w-full md:w-80">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           <Input
             placeholder="Enter object name..."
             value={searchQuery}
@@ -100,49 +100,41 @@ export function ObjectSearch({ onSearch, onAdvancedSearchClick, isLoading = fals
                 setShowResults(true);
               }
             }}
-            className="w-full bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-slate-600"
+            className="w-full bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-slate-600 pl-10"
             disabled={isLoading}
           />
-          
-          {/* Search results dropdown */}
-          {showResults && searchQuery.trim().length >= 2 && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
-              {isSearching ? (
-                <div className="p-4 text-slate-400 text-center">Searching...</div>
-              ) : searchResults.length > 0 ? (
-                <div className="p-2">
-                  <div className="text-slate-400 text-xs mb-2 px-2">
-                    Found {searchResults.length} result{searchResults.length !== 1 ? 's' : ''}
-                  </div>
-                  <div className="space-y-1">
-                    {searchResults.map((objectName) => (
-                      <button
-                        key={objectName}
-                        onClick={() => handleSelectResult(objectName)}
-                        className="w-full px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded border border-slate-600 text-left transition-colors text-white"
-                      >
-                        <div className="text-sm">{objectName}</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="p-4 text-slate-400 text-center text-sm">
-                  No objects found
-                </div>
-              )}
-            </div>
-          )}
         </div>
         
-        <Button
-          onClick={handleSearch}
-          disabled={isLoading || !searchQuery.trim()}
-          className="bg-slate-800 border-slate-700 text-white hover:bg-slate-700 flex-shrink-0"
-          variant="outline"
-        >
-          <Search className="w-4 h-4" />
-        </Button>
+        {/* Search results dropdown */}
+        {showResults && searchQuery.trim().length >= 2 && (
+          <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-slate-800 [&::-webkit-scrollbar-thumb]:bg-slate-600 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-slate-500"
+            style={{ scrollbarColor: '#475569 #1e293b', scrollbarWidth: 'thin' }}>
+            {isSearching ? (
+              <div className="p-4 text-slate-400 text-center">Searching...</div>
+            ) : searchResults.length > 0 ? (
+              <div className="p-2">
+                <div className="text-slate-400 text-xs mb-2 px-2">
+                  Found {searchResults.length} result{searchResults.length !== 1 ? 's' : ''}
+                </div>
+                <div className="space-y-1">
+                  {searchResults.map((objectName) => (
+                    <button
+                      key={objectName}
+                      onClick={() => handleSelectResult(objectName)}
+                      className="w-full px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded border border-slate-600 text-left transition-colors text-white"
+                    >
+                      <div className="text-sm">{objectName}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 text-slate-400 text-center text-sm">
+                No objects found
+              </div>
+            )}
+          </div>
+        )}
       </div>
       
       {/* <Button 
