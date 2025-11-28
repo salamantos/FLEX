@@ -307,7 +307,7 @@
 
     function showObject(name) {
         document.getElementById('name_header').textContent = name
-        request(`${HOST}/data/FULU/${name}`, data => {
+        request(`${HOST}/data/FULU/${name}/`, data => {
             plot(data)
             show_peak_info(data)
         })
@@ -333,7 +333,7 @@
         onSearch(name_input.value)
     }
 
-    request(`${HOST}/names`, names => save_response_names(names))
+    request(`${HOST}/names/`, names => save_response_names(names))
 
 </script>
 

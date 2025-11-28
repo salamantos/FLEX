@@ -607,7 +607,7 @@
 
     function showObject(name) {
         document.getElementById('name_header').textContent = name
-        request(`${HOST}/data/VALC/${name}`, data => {
+        request(`${HOST}/data/VALC/${name}/`, data => {
             plot(data)
             show_params(data)
             show_images(data)
@@ -639,7 +639,7 @@
         onSearch(name_input.value)
     }
 
-    request(`${HOST}/names-valc`, names => save_response_names(names))
+    request(`${HOST}/names-valc/`, names => save_response_names(names))
 
 </script>
 
