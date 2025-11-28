@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ObjectSearch } from './ObjectSearch';
+import { FULU_URL } from '../config';
 
 interface HeaderProps {
   onSearch: (objectName: string) => void;
@@ -37,7 +38,7 @@ export function Header({ onSearch, onAboutClick, onAdvancedSearchClick, isLoadin
                 About
               </button>
               <a 
-                href="/fulu.html"
+                href={FULU_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-300 hover:text-white transition-colors no-underline font-medium"
@@ -78,7 +79,7 @@ export function Header({ onSearch, onAboutClick, onAdvancedSearchClick, isLoadin
                 About
               </button>
               <a 
-                href="/fulu.html"
+                href={FULU_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-300 hover:text-white transition-colors no-underline font-medium"
